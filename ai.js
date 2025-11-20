@@ -301,48 +301,7 @@
       i) { return 0 }
   }
   
-  function v(e, t, r) {
-    if (!e ||
-      "string" != typeof e || !t || !
-      Array.isArray(t) || 0 === t.length
-    ) return "";
-    try {
-      let a = t
-        .filter(t => t && "string" ==
-          typeof t && t.trim().length >
-          0);
-      if (0 === a.length)
-        return e +
-          " (No specific context available, but I can help based on general knowledge.)";
-      let
-        o = a.map((e, t) => {
-          let r = e
-            .split(/[.!?]+/)[0] ||
-            e;
-          return r.length > 100 ?
-            r.substring(0, 100) +
-            "..." : r
-        }),
-        n = o.slice(0, 3),
-        i = n.join(" ");
-      return r && r
-        .length > 0 ?
-        `Based on the information I found on this page:
-
-${i}
-
-${e}
-
-**Key sources referenced:**
-${r.map((e,t)=>`${t+1}. ${e.substring(0,80)}...`).join("\n")}` : `Based on the page content:
-
-${i}
-
-${e}`
-    } catch (s) { return e }
-  }
-  
-  function k(e, t) {
+  function v(e, t) {
     if ("undefined" ==
       typeof marked || !e) return e ||
       "";
@@ -544,7 +503,7 @@ ${e}`
       n) { return e || "" }
   }
   
-  function A(e, t, r) {
+  function k(e, t, r) {
     if (!e || !t)
       return;
     try {
@@ -564,12 +523,12 @@ ${e}`
         navigator.clipboard && navigator
         .clipboard.writeText ? navigator
         .clipboard.writeText(o).then(
-          () => {}).catch(() => {}) : B(
+          () => {}).catch(() => {}) : A(
           o)
     } catch (n) {}
   }
   
-  function B(e) {
+  function A(e) {
     if (!e)
       return;
     try {
@@ -588,7 +547,7 @@ ${e}`
     } catch (a) {}
   }
   
-  function C(e, t) {
+  function B(e, t) {
     if (!e || !t)
       return;
     try {
@@ -632,7 +591,7 @@ ${e}`
     } catch (n) {}
   }
   
-  function E(e, t) {
+  function C(e, t) {
     if (!e || !t)
       return;
     try {
@@ -667,9 +626,9 @@ ${e}`
     } catch (
       n) {}
   }
-  let L = 0;
+  let E = 0;
   
-  function S(e, t, r, a, o = !1) {
+  function L(e, t, r, a, o = !1) {
     if (!
       e || !t && !o) return document
       .createElement("div");
@@ -680,7 +639,7 @@ ${e}`
       n && n.remove();
       let s = document
         .createElement("div"),
-        l = "msg_" + L++;
+        l = "msg_" + E++;
       if (s
         .className = `ai-msg ${e}-msg`,
         s.dataset.messageId = l,
@@ -697,7 +656,7 @@ ${e}`
               behavior: "smooth"
             }),
             50), s;
-        let c = k(t, l);
+        let c = v(t, l);
         s.innerHTML = c, s.dataset
           .sources = JSON.stringify(r ||
             []), s.dataset.query = a ||
@@ -716,7 +675,7 @@ ${e}`
           m.onclick = e => {
             e && e
               .stopPropagation && e
-              .stopPropagation(), A(a,
+              .stopPropagation(), k(a,
                 l, r)
           };
         let g =
@@ -729,7 +688,7 @@ ${e}`
           g.onclick = e => {
             e && e
               .stopPropagation && e
-              .stopPropagation(), C(c,
+              .stopPropagation(), B(c,
                 g)
           };
         let h = document
@@ -741,7 +700,7 @@ ${e}`
           h.onclick = e => {
             e && e
               .stopPropagation && e
-              .stopPropagation(), E(h,
+              .stopPropagation(), C(h,
                 r)
           }, p.appendChild(m),
           p.appendChild(g), p
@@ -822,7 +781,7 @@ ${e}`
           "div")
     }
   }
-  async function M(e,
+  async function S(e,
     t, r, a) {
     if (!e || !t)
       return;
@@ -830,7 +789,7 @@ ${e}`
       let o = t.dataset
         .messageId,
         n = e || "",
-        s = k(n, o);
+        s = v(n, o);
       t.innerHTML = s, b = e;
       let l =
         document.createElement("div");
@@ -846,7 +805,7 @@ ${e}`
         c.onclick = e => {
           e && e
             .stopPropagation && e
-            .stopPropagation(), A(a,
+            .stopPropagation(), k(a,
               o, r)
         };
       let p =
@@ -859,7 +818,7 @@ ${e}`
         p.onclick = e => {
           e && e
             .stopPropagation && e
-            .stopPropagation(), C(s,
+            .stopPropagation(), B(s,
               p)
         };
       let m = document
@@ -871,7 +830,7 @@ ${e}`
         m.onclick = e => {
           e && e
             .stopPropagation && e
-            .stopPropagation(), E(m,
+            .stopPropagation(), C(m,
               r)
         }, l.appendChild(c),
         l.appendChild(p), l
@@ -928,7 +887,7 @@ ${e}`
     } catch (g) {}
   }
   
-  function T(e, t) {
+  function M(e, t) {
     if (!e)
       return document.createElement(
         "div");
@@ -953,7 +912,7 @@ ${e}`
           "div")
     }
   }
-  async function I(e,
+  async function T(e,
     t) {
     if (!e) return;
     try {
@@ -986,7 +945,7 @@ ${e}`
     } catch (s) {}
   }
   
-  function R(e) {
+  function I(e) {
     if (!e || "string" !=
       typeof e) return null;
     try {
@@ -999,7 +958,7 @@ ${e}`
     } catch (r) { return null }
   }
   
-  function O(e, t) {
+  function R(e, t) {
     if (!e ||
       "string" != typeof e || !t ||
       "string" != typeof t)
@@ -1228,24 +1187,24 @@ ${e}`
     }
   }
   
-  function j(e, t, r) {
+  function O(e, t, r) {
     if (!e ||
       "string" != typeof e || !t || !
-      Array.isArray(t) || 0 === t.length
-    ) return "";
+      Array.isArray(t))
+      return "";
     try {
-      let a = t
-        .filter(e => e && "string" ==
-          typeof e && e.trim().length >
-          30).sort((e, t) => t.length -
-          e.length).slice(0, 5);
-      if (
-        0 === a.length)
-        return "I don't have specific information about this on the current page. However, based on general knowledge: " +
-          e;
-      let o = a.map(e => {
-          let t =
-            e.split(/[.!?]/)[0] ||
+      let a = t.filter(e =>
+          e && "string" == typeof e && e
+          .trim().length > 30).sort((e,
+          t) => t.length - e.length)
+        .slice(0, 5);
+      if (0 === a
+        .length)
+        return `I'll answer based on general knowledge:\n\n${e}`;
+      let
+        o = a.map(e => {
+          let t = e
+            .split(/[.!?]/)[0] ||
             e;
           return t.length > 120 ?
             t.substring(0, 120) +
@@ -1253,22 +1212,14 @@ ${e}`
         }),
         n = o.join(
           " ");
-      return `## Answer Based on Page Content
-
-${e}
-
-### Context from Page:
-${n}
-
-${r&&r.length>0?`### Referenced Sources:
-${r.slice(0,3).map((e,t)=>`${t+1}. ${e.substring(0,100)}...`).join("\n")}`:""}
+      return `## Answer Based on Page Content\n\n${e}\n\n### Context from Page:\n${n}\n\n${r&&r.length>0?`### Referenced Sources:\n${r.slice(0,3).map((e,t)=>`${t+1}. ${e.substring(0,100)}...`).join("\n")}`:""}
 
 *Note: This answer is generated from the page content using advanced NLP processing.*`
     } catch (
       i) { return e }
   }
   
-  function D() {
+  function j() {
     c = !c, n.classList
       .toggle("show", c), c ?
       setTimeout(() => {
@@ -1282,7 +1233,7 @@ ${r.slice(0,3).map((e,t)=>`${t+1}. ${e.substring(0,100)}...`).join("\n")}`:""}
         .blur()
       )
   }
-  async function N() {
+  async function D() {
     let e = s
       .value.trim();
     if (!e || p)
@@ -1435,14 +1386,14 @@ ${r.slice(0,3).map((e,t)=>`${t+1}. ${e.substring(0,100)}...`).join("\n")}`:""}
         "regenerate" === t.type &&
         h && b) {
         s.value = h,
-          N();
+          D();
         return
       }
       if ("simplify" ===
         t.type && b) {
         s.value =
           "Explain this in simpler terms: " +
-          b, N();
+          b, D();
         return
       }
       if (
@@ -1450,7 +1401,7 @@ ${r.slice(0,3).map((e,t)=>`${t+1}. ${e.substring(0,100)}...`).join("\n")}`:""}
         s
           .value =
           "Make this shorter and more concise: " +
-          b, N();
+          b, D();
         return
       }
       if (
@@ -1458,7 +1409,7 @@ ${r.slice(0,3).map((e,t)=>`${t+1}. ${e.substring(0,100)}...`).join("\n")}`:""}
         s
           .value =
           "Expand on this with more details: " +
-          b, N();
+          b, D();
         return
       }
       if (
@@ -1466,7 +1417,7 @@ ${r.slice(0,3).map((e,t)=>`${t+1}. ${e.substring(0,100)}...`).join("\n")}`:""}
       ) {
         s.value =
           "Continue from: " + b.slice(
-            -200), N();
+            -200), D();
         return
       }
     }
@@ -1501,34 +1452,23 @@ ${r.slice(0,3).map((e,t)=>`${t+1}. ${e.substring(0,100)}...`).join("\n")}`:""}
         } catch (
           a) { return "search" }
       }(e);
-    S("user", e, [], "", !1), s
+    L("user", e, [], "", !1), s
       .value = "";
-    let o = T(
+    let o = M(
         "Initializing", ""),
       n = !1,
-      c = null,
-      m = null;
+      m = null,
+      u = null;
     try {
-      let u = O(e, a),
-        f = u.context || "",
-        x = u.sources || [];
-      if (!f ||
-        f.length < 100) {
-        let y =
-          "I apologize, but I couldn't extract sufficient context from the current page to provide a detailed answer. However, I can try to help based on general knowledge.";
-        S("bot", y, [], "", !1), p = !
-          1, l.disabled = !0, window
-          .innerWidth >= 769 && s
-          .focus(), o
-          .remove();
-        return
-      }
-      I(o, x
-        .length);
-      let w =
+      let _ = R(e, a),
+        f = _.context || "",
+        x = _.sources || [];
+      T(o, x.length);
+      let y =
         function e() {
           try {
-            let t = "",
+            let t =
+              "",
               r = d.slice(-8);
             if (!
               r || 0 === r.length)
@@ -1550,24 +1490,25 @@ ${r.slice(0,3).map((e,t)=>`${t+1}. ${e.substring(0,100)}...`).join("\n")}`:""}
           } catch (
             i) { return "" }
         }(),
-        k =
+        w =
         `You are ARai by arlabs07. Follow ALL instructions EXACTLY.\n\nRULES:\n1. Code: Output ACTUAL CODE in code blocks, NOT explanations\n2. Math: Use LaTeX with $ or $$ delimiters. Example: $$\\pi = 3.14159265358979323846$$\n3. Tables: Use markdown table format with | separators\n4. Images: Use ![desc](https://image.pollinations.ai/prompt/desc)\n5. NEVER add citation numbers in responses\n6. Summarize: Comprehensive overview with key points\n7. Be PRECISE and DIRECT`,
-        A = "";
-      x && x.length > 0 && (A =
-        "\n\nContext:\n", x.forEach(
-          (e, t) => {
-            e && (A +=
-              `${t+1}. ${e.substring(0,200)}\n`
-            )
-          }));
+        k = "";
+      x && x.length > 0 ? k :
+        "\n\nContext:\n", x.forEach((
+          e, t) => {
+          e && (k +=
+            `${t+1}. ${e.substring(0,200)}\n`
+          )
+        }); k=
+      "\n\n(General knowledge mode - no specific page context available)";
       let
-        B = {
-          model: "gemini-search",
+        A = {
+          model: "openai",
           messages: [{
               role: "system",
-              content: k
-            }, w &&
-            "" !== w.trim() ?
+              content: w
+            }, y &&
+            "" !== y.trim() ?
             {
               role: "assistant",
               content: "Context understood."
@@ -1583,90 +1524,135 @@ ${r.slice(0,3).map((e,t)=>`${t+1}. ${e.substring(0,100)}...`).join("\n")}`:""}
               role: "user",
               content: f && f
                 .length > 50 ?
-                `${e}${A}\n\nPage: ${f}` :
-                `${e}${A}`
+                `${e}${k}\n\nPage: ${f}` :
+                `${e}${k}`
             }
           ].filter(e => null !== e),
-          temperature: .7,
-          max_tokens: 1500,
-          top_p: .4,
+          temperature: 1,
           stream: !0
         };
+      console.log(
+        "[ARai] Starting AI request with 30s timeout"
+      );
+      let B =
+        new AbortController,
+        C = B.signal,
+        E = null;
       try {
-        let C =
-          await Promise.race([fetch(
-              "https://text.pollinations.ai/openai", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON
-                  .stringify(B)
-              }),
-            new Promise((e, t) =>
-              setTimeout(() => t(
-                Error(
-                  "Request timeout"
-                )), 15e3))
-          ]);
-        if (!C || !C.ok) {
-          n = !
-            0, c = x, m =
-            f;
+        let N =
+          new Promise(async (t,
+            a) => {
+            try {
+              let o =
+                await fetch(
+                  "https://text.pollinations.ai/openai", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON
+                      .stringify(
+                        A),
+                    signal: C
+                  }
+                );
+              if (!o || !o
+                .ok) {
+                n = !0, m =
+                  x, u = f, a(
+                    Error(
+                      `API Error: ${o?o.status:"Network error"}`
+                    )
+                  );
+                return
+              }
+              t(
+                o)
+            } catch (i) {
+              n
+                = !0, m = x, u =
+                f, a(i)
+            }
+          }),
+          P = new Promise((e,
+            t) => {
+            E = setTimeout(
+              () => {
+                console.log(
+                    "[ARai] 30s timeout reached, activating NPU"
+                  ), n = !0, m =
+                  x, u = f, B
+                  .abort(), t(
+                    Error(
+                      "Request timeout - switching to NPU"
+                    ))
+              }, 3e4
+            )
+          });
+        let q = await Promise
+          .race([N, P]);
+        if (E &&
+          clearTimeout(E), n
+        ) {
+          console.log(
+            "[ARai] Timeout triggered, using NPU fallback"
+          );
           throw Error(
-            `API Error: ${C?C.status:"Network error"}`
-          )
+            "Timeout")
         }
         o.remove();
-        let E =
-          S("bot", "", x, r, !0);
-        if (
-          !E) {
-          n = !0, c = x, m =
-            f;
+        let
+          F = L("bot", "", x, r, !
+            0);
+        if (!F) {
+          n = !0, m = x,
+            u = f;
           throw Error(
             "Failed to create message element"
           )
         }
-        let L = C.body
+        console.log(
+          "[ARai] AI responding successfully"
+        );
+        let H = q.body
           .getReader(),
-          D = new TextDecoder,
-          N = "",
-          P = !
+          U = new TextDecoder,
+          W = "",
+          z = !
           1;
         for (;;) {
           let {
-            done: q,
-            value: F
-          } = await L
+            done: G,
+            value: V
+          } = await H
             .read();
-          if (q) break;
+          if (G) break;
           if (!
-            F) continue;
-          P = !0;
-          let H = D.decode(
-            F, { stream: !0 });
-          if (!H)
+            V) continue;
+          z = !0;
+          let X = U.decode(
+            V, { stream: !0 });
+          if (!X)
             continue;
-          let U = H.split(
+          let Y = X.split(
             "\n").filter(e => e && e
             .trim());
-          for (let W of U)
-            if (W && W.startsWith(
+          for (let J of Y)
+            if (J && J.startsWith(
                 "data: ")) {
-              let z = W
+              let K = J
                 .slice(6).trim();
               if (
-                "[DONE]" === z)
+                "[DONE]" === K)
                 continue;
               try {
                 let
-                  G = R(z) || JSON
-                  .parse(z),
-                  V = G?.choices?.[0]
+                  Q = I(K) || JSON
+                  .parse(K),
+                  Z = Q?.choices?.[0]
                   ?.delta?.content ||
                   "";
-                V && (N += V, E
-                  .innerHTML = k(N,
-                    E.dataset
+                Z && (W += Z, F
+                  .innerHTML = v(W,
+                    F.dataset
                     .messageId), i
                   .scrollTo({
                     top: i
@@ -1675,21 +1661,21 @@ ${r.slice(0,3).map((e,t)=>`${t+1}. ${e.substring(0,100)}...`).join("\n")}`:""}
                   })
                 )
               } catch (
-                X) {}
+                ee) {}
             }
         }
-        if (!P || !
-          N || N.length < 10) {
+        if (!z || !
+          W || W.length < 10) {
           n = !
-            0, c = x, m =
+            0, m = x, u =
             f;
           throw Error(
             "No valid response received"
           )
         }
         "undefined" !=
-        typeof hljs && E && E
-          .querySelectorAll && E
+        typeof hljs && F && F
+          .querySelectorAll && F
           .querySelectorAll(
             "pre code").forEach(
             e => {
@@ -1703,41 +1689,55 @@ ${r.slice(0,3).map((e,t)=>`${t+1}. ${e.substring(0,100)}...`).join("\n")}`:""}
                     e)
               } catch (t) {}
             }),
-          await M(N, E, x,
-            r)
-      } catch (Y) {
-        n = !0, c =
-          x, m =
-          f;
-        throw Y
+          await S(W, F, x, r), console
+          .log(
+            "[ARai] AI response completed successfully"
+          )
+      } catch (
+        te) {
+        throw n = !0, m = x, u =
+          f, E && clearTimeout(E),
+          te
       }
-    } catch (
-      J) {
-      if (o && o.remove && o
-        .remove(), n && c && c
+    } catch (re) {
+      if (o &&
+        o.remove && o.remove(),
+        console.log(
+          "[ARai] Error occurred:", re
+          .message), n && m && m
         .length > 0) {
         console.log(
-          "[ARai] API failed, using NLP fallback"
+          "[ARai] Activating NPU fallback with sources"
         );
-        let K =
-          "I apologize for the delay. Let me provide an answer based on the page content I've analyzed:",
-          Q = j(K, c, c);
-        S("bot", Q, c, "", !1)
-      } else
-        console.error(
-          "[ARai] Critical error:", J
-        ), S("bot",
-          "I apologize, but I encountered an error processing your request. Please try again or rephrase your question.",
-          [], "", !1)
+        let ae =
+          `Based on the content I found on this page, here's what I can tell you:\n\n`,
+          oe = O(ae, m, m);
+        L("bot", oe, m, "", !
+          1)
+      } else if (n && (!m ||
+          0 === m.length)) {
+        console
+          .log(
+            "[ARai] No sources available, providing general answer"
+          );
+        let ne =
+          `I'll answer your question based on general knowledge:\n\n${e}\n\n*Note: I couldn't extract specific information from the current page, so this is a general response. For page-specific answers, please ensure you're on a content-rich page.*`;
+        L("bot", ne, [], "", !
+          1)
+      } else console.error(
+        "[ARai] Critical error:", re
+      ), L("bot",
+        "I apologize, but I encountered an error processing your request. Please try again.",
+        [], "", !1)
     } finally {
-      p
-        = !1, l.disabled = !0, window
+      p = !
+        1, l.disabled = !0, window
         .innerWidth >= 769 && s
         .focus()
     }
   }
   t
-    .addEventListener("click", D), s
+    .addEventListener("click", j), s
     .addEventListener("input",
       () => {
         let e = s.value.trim()
@@ -1748,22 +1748,22 @@ ${r.slice(0,3).map((e,t)=>`${t+1}. ${e.substring(0,100)}...`).join("\n")}`:""}
       }), l.addEventListener(
       "click", () => {
         l.disabled ||
-          p || N()
+          p || D()
       }), s
     .addEventListener("keypress",
       e => {
         "Enter" === (e && e.key) ||
-        l.disabled || p || N()
+        l.disabled || p || D()
       }), n
     .addEventListener("click", e => {
       e
         &&
-        e.target === n && D()
+        e.target === n && j()
     }),
     document.addEventListener("keydown",
       e => {
         "Escape" === (e && e
-          .key) && c && D()
+          .key) && c && j()
       }), document
     .addEventListener("click",
       e => {
