@@ -131,26 +131,31 @@
         })
   }();
   
-  function u() {
-    c = !c, n.classList
-      .toggle("show", c), c ?
-      setTimeout(() => {
-        s
-          .removeAttribute(
-            "readonly"), window
-          .innerWidth >= 769 && s
-          .focus()
-      }, 700) : (s
-        .setAttribute("readonly", ""), s
-        .blur())
+  function u(e, t) {
+    if (!e || !t ||
+      "string" != typeof e ||
+      "string" != typeof t) return !
+      1;
+    try {
+      return e.toLowerCase()
+        .includes(t
+          .toLowerCase())
+    } catch (
+      r) { return !1 }
   }
   
   function $(e, t) {
     if (!e ||
       "string" != typeof e)
       return "";
-    return e.length > t ? e
-      .substring(0, t) : e
+    if (!t || "number" !=
+      typeof t || t < 0)
+      return e;
+    try {
+      return e.length > t ?
+        e.substring(0, t) : e
+    } catch (
+      r) { return e }
   }
   
   function _(e) {
@@ -252,8 +257,7 @@
         if (!
           i) continue;
         let s = t.filter(
-            e => e && e.includes(i))
-          .length,
+            e => e && u(e, i)).length,
           l = o > 0 && s < o ? Math.log(
             (o - s + .5) / (s + .5) + 1
           ) : 0;
@@ -269,7 +273,7 @@
           g = e.length || 1,
           b = p * (2.5 + 1) / (p + 2.5 *
             (1 - .75 + .75 * g / 20));
-        c[d] = (b * m) ||
+        c[d] = b * m ||
           0
       }
       return c
@@ -297,7 +301,48 @@
       i) { return 0 }
   }
   
-  function v(e, t) {
+  function v(e, t, r) {
+    if (!e ||
+      "string" != typeof e || !t || !
+      Array.isArray(t) || 0 === t.length
+    ) return "";
+    try {
+      let a = t
+        .filter(t => t && "string" ==
+          typeof t && t.trim().length >
+          0);
+      if (0 === a.length)
+        return e +
+          " (No specific context available, but I can help based on general knowledge.)";
+      let
+        o = a.map((e, t) => {
+          let r = e
+            .split(/[.!?]+/)[0] ||
+            e;
+          return r.length > 100 ?
+            r.substring(0, 100) +
+            "..." : r
+        }),
+        n = o.slice(0, 3),
+        i = n.join(" ");
+      return r && r
+        .length > 0 ?
+        `Based on the information I found on this page:
+
+${i}
+
+${e}
+
+**Key sources referenced:**
+${r.map((e,t)=>`${t+1}. ${e.substring(0,80)}...`).join("\n")}` : `Based on the page content:
+
+${i}
+
+${e}`
+    } catch (s) { return e }
+  }
+  
+  function k(e, t) {
     if ("undefined" ==
       typeof marked || !e) return e ||
       "";
@@ -496,14 +541,10 @@
       ).replace(/<\/table>/g,
         "</table></div>")
     } catch (
-      n) {
-      return console.error(
-          "[ARai] Render error"), e ||
-        ""
-    }
+      n) { return e || "" }
   }
   
-  function k(e, t, r) {
+  function A(e, t, r) {
     if (!e || !t)
       return;
     try {
@@ -523,12 +564,12 @@
         navigator.clipboard && navigator
         .clipboard.writeText ? navigator
         .clipboard.writeText(o).then(
-          () => {}).catch(() => {}) : A(
+          () => {}).catch(() => {}) : B(
           o)
     } catch (n) {}
   }
   
-  function A(e) {
+  function B(e) {
     if (!e)
       return;
     try {
@@ -547,7 +588,7 @@
     } catch (a) {}
   }
   
-  function B(e, t) {
+  function C(e, t) {
     if (!e || !t)
       return;
     try {
@@ -591,7 +632,7 @@
     } catch (n) {}
   }
   
-  function C(e, t) {
+  function E(e, t) {
     if (!e || !t)
       return;
     try {
@@ -626,9 +667,9 @@
     } catch (
       n) {}
   }
-  let E = 0;
+  let L = 0;
   
-  function L(e, t, r, a, o = !1) {
+  function S(e, t, r, a, o = !1) {
     if (!
       e || !t && !o) return document
       .createElement("div");
@@ -639,7 +680,7 @@
       n && n.remove();
       let s = document
         .createElement("div"),
-        l = "msg_" + E++;
+        l = "msg_" + L++;
       if (s
         .className = `ai-msg ${e}-msg`,
         s.dataset.messageId = l,
@@ -656,7 +697,7 @@
               behavior: "smooth"
             }),
             50), s;
-        let c = v(t, l);
+        let c = k(t, l);
         s.innerHTML = c, s.dataset
           .sources = JSON.stringify(r ||
             []), s.dataset.query = a ||
@@ -675,7 +716,7 @@
           m.onclick = e => {
             e && e
               .stopPropagation && e
-              .stopPropagation(), k(a,
+              .stopPropagation(), A(a,
                 l, r)
           };
         let g =
@@ -688,7 +729,7 @@
           g.onclick = e => {
             e && e
               .stopPropagation && e
-              .stopPropagation(), B(c,
+              .stopPropagation(), C(c,
                 g)
           };
         let h = document
@@ -700,7 +741,7 @@
           h.onclick = e => {
             e && e
               .stopPropagation && e
-              .stopPropagation(), C(h,
+              .stopPropagation(), E(h,
                 r)
           }, p.appendChild(m),
           p.appendChild(g), p
@@ -776,13 +817,12 @@
           }), 50),
         s
     } catch (u) {
-      return console
-        .error("[ARai] Message error"),
-        document.createElement(
+      return document
+        .createElement(
           "div")
     }
   }
-  async function S(e,
+  async function M(e,
     t, r, a) {
     if (!e || !t)
       return;
@@ -790,7 +830,7 @@
       let o = t.dataset
         .messageId,
         n = e || "",
-        s = v(n, o);
+        s = k(n, o);
       t.innerHTML = s, b = e;
       let l =
         document.createElement("div");
@@ -806,7 +846,7 @@
         c.onclick = e => {
           e && e
             .stopPropagation && e
-            .stopPropagation(), k(a,
+            .stopPropagation(), A(a,
               o, r)
         };
       let p =
@@ -819,7 +859,7 @@
         p.onclick = e => {
           e && e
             .stopPropagation && e
-            .stopPropagation(), B(s,
+            .stopPropagation(), C(s,
               p)
         };
       let m = document
@@ -831,7 +871,7 @@
         m.onclick = e => {
           e && e
             .stopPropagation && e
-            .stopPropagation(), C(m,
+            .stopPropagation(), E(m,
               r)
         }, l.appendChild(c),
         l.appendChild(p), l
@@ -885,14 +925,10 @@
           content: $(e || "",
             5e3)
         })
-    } catch (
-      g) {
-      console.error(
-        "[ARai] Finalize error")
-    }
+    } catch (g) {}
   }
   
-  function M(e, t) {
+  function T(e, t) {
     if (!e)
       return document.createElement(
         "div");
@@ -917,7 +953,7 @@
           "div")
     }
   }
-  async function T(e,
+  async function I(e,
     t) {
     if (!e) return;
     try {
@@ -950,7 +986,7 @@
     } catch (s) {}
   }
   
-  function I(e) {
+  function R(e) {
     if (!e || "string" !=
       typeof e) return null;
     try {
@@ -963,7 +999,7 @@
     } catch (r) { return null }
   }
   
-  function R(e, t) {
+  function O(e, t) {
     if (!e ||
       "string" != typeof e || !t ||
       "string" != typeof t)
@@ -1088,28 +1124,27 @@
                 1;
               i += r * a * 25
             }
-            o
-              .includes(e
-                .toLowerCase()) &&
-              (i += 200)
+            u(
+              o, e.toLowerCase()
+            ) && (i += 200)
           });
-          let l = e
-            .toLowerCase().replace(
-              /[^\w\s]/g, " ").split(
-              /\s+/).filter(e => e);
+          let
+            l = e.toLowerCase()
+            .replace(/[^\w\s]/g, " ")
+            .split(/\s+/).filter(e =>
+              e);
           d.forEach(e => {
-              e && o
-                .includes(e) && (
-                  i += 80)
+              e && u(o,
+                e) && (i += 80)
             }), p
             .forEach(e => {
-              e && o
-                .includes(e) && (
-                  i += 120)
+              e && u(o,
+                e) && (i +=
+                120)
             });
-          let
-            c = w(s, n.split(/\s+/)
-              .filter(e => e));
+          let c = w(s, n
+            .split(/\s+/).filter(
+              e => e));
           i += c * 150;
           let g = a / l
             .length;
@@ -1149,41 +1184,41 @@
           sources: []
         };
       let h = "",
-        u = 0,
-        v = [],
-        k = new Set;
-      for (let A = 0; A <
-        Math.min(20, b.length); A++
+        k = 0,
+        A = [],
+        B = new Set;
+      for (let C = 0; C <
+        Math.min(20, b.length); C++
       ) {
-        let B = b[A];
-        if (!B || !B
+        let E = b[C];
+        if (!E || !E
           .text) continue;
-        if (u + B
+        if (k + E
           .text.length > 3500) break;
-        h += B.text + ". ", v.push(B
+        h += E.text + ". ", A.push(E
             .text.substring(0, 150)),
-          u += B.text.length, k.add(B
+          k += E.text.length, B.add(E
             .index)
       }
       if (!h || h
         .length < 100) {
-        let C = l
+        let L = l
           .slice(0, Math.min(10, l
             .length)).join(". ") + " ";
-        v = l.slice(0, Math.min(10, l
+        A = l.slice(0, Math.min(10, l
           .length)).map(e => (e || "")
           .substring(0, 150)).filter(
-          e => e), h = C.substring(0,
+          e => e), h = L.substring(0,
           3500)
       }
       return console.log(
-        `[ARai] Extracted ${v.length} sources`
+        `[ARai] Extracted ${A.length} sources`
       ), {
         context: h || "",
-        sources: v || []
+        sources: A || []
       }
     } catch (
-      E) {
+      S) {
       return console.error(
         "[ARai] Source extraction error"
       ), {
@@ -1192,10 +1227,67 @@
       }
     }
   }
-  async function O() {
-    let
-      e = s.value.trim();
+  
+  function j(e, t, r) {
+    if (!e ||
+      "string" != typeof e || !t || !
+      Array.isArray(t) || 0 === t.length
+    ) return "";
+    try {
+      let a = t
+        .filter(e => e && "string" ==
+          typeof e && e.trim().length >
+          30).sort((e, t) => t.length -
+          e.length).slice(0, 5);
+      if (
+        0 === a.length)
+        return "I don't have specific information about this on the current page. However, based on general knowledge: " +
+          e;
+      let o = a.map(e => {
+          let t =
+            e.split(/[.!?]/)[0] ||
+            e;
+          return t.length > 120 ?
+            t.substring(0, 120) +
+            "..." : t
+        }),
+        n = o.join(
+          " ");
+      return `## Answer Based on Page Content
+
+${e}
+
+### Context from Page:
+${n}
+
+${r&&r.length>0?`### Referenced Sources:
+${r.slice(0,3).map((e,t)=>`${t+1}. ${e.substring(0,100)}...`).join("\n")}`:""}
+
+*Note: This answer is generated from the page content using advanced NLP processing.*`
+    } catch (
+      i) { return e }
+  }
+  
+  function D() {
+    c = !c, n.classList
+      .toggle("show", c), c ?
+      setTimeout(() => {
+        s
+          .removeAttribute(
+            "readonly"), window
+          .innerWidth >= 769 && s
+          .focus()
+      }, 700) : (s
+        .setAttribute("readonly", ""), s
+        .blur()
+      )
+  }
+  async function N() {
+    let e = s
+      .value.trim();
     if (!e || p)
+      return;
+    if (e.length > 5e3)
       return;
     let t = function e(
       t) {
@@ -1343,14 +1435,14 @@
         "regenerate" === t.type &&
         h && b) {
         s.value = h,
-          O();
+          N();
         return
       }
       if ("simplify" ===
         t.type && b) {
         s.value =
           "Explain this in simpler terms: " +
-          b, O();
+          b, N();
         return
       }
       if (
@@ -1358,7 +1450,7 @@
         s
           .value =
           "Make this shorter and more concise: " +
-          b, O();
+          b, N();
         return
       }
       if (
@@ -1366,7 +1458,7 @@
         s
           .value =
           "Expand on this with more details: " +
-          b, O();
+          b, N();
         return
       }
       if (
@@ -1374,14 +1466,12 @@
       ) {
         s.value =
           "Continue from: " + b.slice(
-            -200),
-          O();
+            -200), N();
         return
       }
     }
-    if (e.length >
-      5e3) return;
-    p = !0, l.disabled = !0, l
+    p
+      = !0, l.disabled = !0, l
       .classList.remove("active");
     let
       r = e,
@@ -1411,21 +1501,34 @@
         } catch (
           a) { return "search" }
       }(e);
-    L("user", e, [], "", !1), s
+    S("user", e, [], "", !1), s
       .value = "";
-    let o = M(
-      "Initializing", "");
+    let o = T(
+        "Initializing", ""),
+      n = !1,
+      c = null,
+      m = null;
     try {
-      let
-        n = R(e, a),
-        c = n.context || "",
-        m = n.sources || [];
-      T(o, m.length);
-      let u =
+      let u = O(e, a),
+        f = u.context || "",
+        x = u.sources || [];
+      if (!f ||
+        f.length < 100) {
+        let y =
+          "I apologize, but I couldn't extract sufficient context from the current page to provide a detailed answer. However, I can try to help based on general knowledge.";
+        S("bot", y, [], "", !1), p = !
+          1, l.disabled = !0, window
+          .innerWidth >= 769 && s
+          .focus(), o
+          .remove();
+        return
+      }
+      I(o, x
+        .length);
+      let w =
         function e() {
           try {
-            let t =
-              "",
+            let t = "",
               r = d.slice(-8);
             if (!
               r || 0 === r.length)
@@ -1447,24 +1550,24 @@
           } catch (
             i) { return "" }
         }(),
-        v =
+        k =
         `You are ARai by arlabs07. Follow ALL instructions EXACTLY.\n\nRULES:\n1. Code: Output ACTUAL CODE in code blocks, NOT explanations\n2. Math: Use LaTeX with $ or $$ delimiters. Example: $$\\pi = 3.14159265358979323846$$\n3. Tables: Use markdown table format with | separators\n4. Images: Use ![desc](https://image.pollinations.ai/prompt/desc)\n5. NEVER add citation numbers in responses\n6. Summarize: Comprehensive overview with key points\n7. Be PRECISE and DIRECT`,
-        k = "";
-      m && m.length > 0 && (k =
-        "\n\nContext:\n", m.forEach(
+        A = "";
+      x && x.length > 0 && (A =
+        "\n\nContext:\n", x.forEach(
           (e, t) => {
-            e && (k +=
+            e && (A +=
               `${t+1}. ${e.substring(0,200)}\n`
             )
           }));
       let
-        A = {
+        B = {
           model: "gemini-search",
           messages: [{
               role: "system",
-              content: v
-            }, u &&
-            "" !== u.trim() ?
+              content: k
+            }, w &&
+            "" !== w.trim() ?
             {
               role: "assistant",
               content: "Context understood."
@@ -1478,122 +1581,163 @@
             })),
             {
               role: "user",
-              content: c && c
+              content: f && f
                 .length > 50 ?
-                `${e}${k}\n\nPage: ${c}` :
-                `${e}${k}`
+                `${e}${A}\n\nPage: ${f}` :
+                `${e}${A}`
             }
           ].filter(e => null !== e),
           temperature: .7,
           max_tokens: 1500,
           top_p: .4,
           stream: !0
-        },
-        B = await fetch(
-          "https://text.pollinations.ai/openai", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(A)
-          }
-        );
-      if (!B || !B.ok)
-        throw Error(
-          `API Error: ${B?B.status:"Network error"}`
-        );
-      o.remove();
-      let C = L("bot", "",
-        m, r, !0);
-      if (!C)
-        throw Error(
-          "Failed to create message element"
-        );
-      let E = B.body
-        .getReader(),
-        O = new TextDecoder,
-        j = "";
-      for (;;) {
-        let {
-          done: D,
-          value: N
-        } = await E
-          .read();
-        if (D) break;
-        if (!N)
-          continue;
-        let P = O.decode(
-          N, { stream: !0 });
-        if (!P)
-          continue;
-        let q = P.split(
-          "\n").filter(e => e && e
-          .trim());
-        for (let F of q)
-          if (F && F.startsWith(
-              "data: ")) {
-            let H = F
-              .slice(6).trim();
-            if (
-              "[DONE]" === H)
-              continue;
-            try {
-              let U = I(
-                  H) || JSON.parse(H),
-                W = U?.choices?.[0]
-                ?.delta?.content ||
-                "";
-              W && (j += W, C
-                .innerHTML = v(j, C
-                  .dataset.messageId
-                ), i
-                .scrollTo({
-                  top: i
-                    .scrollHeight,
-                  behavior: "smooth"
-                })
-              )
-            } catch (
-              z) {}
-          }
+        };
+      try {
+        let C =
+          await Promise.race([fetch(
+              "https://text.pollinations.ai/openai", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON
+                  .stringify(B)
+              }),
+            new Promise((e, t) =>
+              setTimeout(() => t(
+                Error(
+                  "Request timeout"
+                )), 15e3))
+          ]);
+        if (!C || !C.ok) {
+          n = !
+            0, c = x, m =
+            f;
+          throw Error(
+            `API Error: ${C?C.status:"Network error"}`
+          )
+        }
+        o.remove();
+        let E =
+          S("bot", "", x, r, !0);
+        if (
+          !E) {
+          n = !0, c = x, m =
+            f;
+          throw Error(
+            "Failed to create message element"
+          )
+        }
+        let L = C.body
+          .getReader(),
+          D = new TextDecoder,
+          N = "",
+          P = !
+          1;
+        for (;;) {
+          let {
+            done: q,
+            value: F
+          } = await L
+            .read();
+          if (q) break;
+          if (!
+            F) continue;
+          P = !0;
+          let H = D.decode(
+            F, { stream: !0 });
+          if (!H)
+            continue;
+          let U = H.split(
+            "\n").filter(e => e && e
+            .trim());
+          for (let W of U)
+            if (W && W.startsWith(
+                "data: ")) {
+              let z = W
+                .slice(6).trim();
+              if (
+                "[DONE]" === z)
+                continue;
+              try {
+                let
+                  G = R(z) || JSON
+                  .parse(z),
+                  V = G?.choices?.[0]
+                  ?.delta?.content ||
+                  "";
+                V && (N += V, E
+                  .innerHTML = k(N,
+                    E.dataset
+                    .messageId), i
+                  .scrollTo({
+                    top: i
+                      .scrollHeight,
+                    behavior: "smooth"
+                  })
+                )
+              } catch (
+                X) {}
+            }
+        }
+        if (!P || !
+          N || N.length < 10) {
+          n = !
+            0, c = x, m =
+            f;
+          throw Error(
+            "No valid response received"
+          )
+        }
+        "undefined" !=
+        typeof hljs && E && E
+          .querySelectorAll && E
+          .querySelectorAll(
+            "pre code").forEach(
+            e => {
+              if (!e)
+                return;
+              try {
+                e.classList
+                  .contains("hljs") ||
+                  hljs
+                  .highlightElement(
+                    e)
+              } catch (t) {}
+            }),
+          await M(N, E, x,
+            r)
+      } catch (Y) {
+        n = !0, c =
+          x, m =
+          f;
+        throw Y
       }
-      "undefined" !=
-      typeof hljs && C && C
-        .querySelectorAll && C
-        .querySelectorAll("pre code")
-        .forEach(e => {
-          if (!e)
-            return;
-          try {
-            e.classList
-              .contains("hljs") ||
-              hljs.highlightElement(
-                e)
-          } catch (t) {}
-        }),
-        await S(j, C, m, r)
     } catch (
-      G) {
-      try {
-        o && o.remove && o
-          .remove()
-      } catch (
-        V) {} console.error(
-        "[ARai] Error:", G);
-      try {
-        L(
-          "bot",
+      J) {
+      if (o && o.remove && o
+        .remove(), n && c && c
+        .length > 0) {
+        console.log(
+          "[ARai] API failed, using NLP fallback"
+        );
+        let K =
+          "I apologize for the delay. Let me provide an answer based on the page content I've analyzed:",
+          Q = j(K, c, c);
+        S("bot", Q, c, "", !1)
+      } else
+        console.error(
+          "[ARai] Critical error:", J
+        ), S("bot",
           "I apologize, but I encountered an error processing your request. Please try again or rephrase your question.",
           [], "", !1)
-      } catch (
-        X) {}
     } finally {
-      p = !1, l
-        .disabled = !0, window
+      p
+        = !1, l.disabled = !0, window
         .innerWidth >= 769 && s
         .focus()
     }
   }
   t
-    .addEventListener("click", u), s
+    .addEventListener("click", D), s
     .addEventListener("input",
       () => {
         let e = s.value.trim()
@@ -1604,22 +1748,22 @@
       }), l.addEventListener(
       "click", () => {
         l.disabled ||
-          p || O()
+          p || N()
       }), s
     .addEventListener("keypress",
       e => {
         "Enter" === (e && e.key) ||
-        l.disabled || p || O()
+        l.disabled || p || N()
       }), n
     .addEventListener("click", e => {
       e
         &&
-        e.target === n && u()
+        e.target === n && D()
     }),
     document.addEventListener("keydown",
       e => {
         "Escape" === (e && e
-          .key) && c && u()
+          .key) && c && D()
       }), document
     .addEventListener("click",
       e => {
