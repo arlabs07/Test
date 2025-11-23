@@ -1,0 +1,216 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loading...</title>
+  
+  <!-- Performance Optimization: Preconnect to CDNs -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+  <!-- Fonts & Libraries -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- CodeMirror (Code Editor) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
+  
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  
+  <!-- CodeMirror Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script>
+
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- Local CSS -->
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="layout.css">
+  <link rel="stylesheet" href="components.css">
+  <link rel="stylesheet" href="ppt.css">
+  <link rel="stylesheet" href="editor.css">
+    
+</head>
+
+<body>
+
+  <header id="previewHeaderIframe" class="preview-header-iframe">
+    <div class="header-content-wrapper-iframe">
+      <div class="logo-section-iframe">
+        <img src="" alt="Logo" class="arvia-logo-iframe" id="headerLogo" style="display:none;" loading="lazy">
+        <span class="arvia-text-iframe" id="headerTitle"></span>
+      </div>
+      <div class="header-controls-iframe">
+        <button id="searchButtonIframe" class="menu-button-iframe" style="display:block" aria-label="Open Search">
+          <i class="fas fa-search"></i>
+        </button>
+        <button id="menuButtonIframe" class="menu-button-iframe" aria-label="Open Mobile Menu" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+    <div class="search-bar-wrapper-iframe">
+      <input type="search" id="pageSearchInput" class="page-search-input-iframe" placeholder="Search on this page...">
+      <div id="searchNavControls" class="search-nav-controls-iframe" style="display: none;">
+        <span id="searchResultsCount" class="search-results-count-iframe"></span>
+        <button id="searchNavUp" class="search-nav-btn-iframe" aria-label="Previous result"><i class="fas fa-arrow-up"></i></button>
+        <button id="searchNavDown" class="search-nav-btn-iframe" aria-label="Next result"><i class="fas fa-arrow-down"></i></button>
+      </div>
+      <button id="closeSearchButtonIframe" class="close-search-btn-iframe" aria-label="Close Search">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- NOTIFICATION CONTAINER -->
+  <div id="notificationContainer" class="arvia-notification-container"></div>
+
+  <div id="breadcrumbBarIframe" class="breadcrumb-bar-iframe" aria-label="Breadcrumb">
+    <div id="breadcrumbTrailIframe" class="breadcrumb-trail-iframe"></div>
+    <div class="breadcrumb-actions-iframe">
+      <button id="readAloudBtnIframe" class="breadcrumb-action-btn-iframe" title="Read Page Aloud" aria-label="Read Page Aloud">
+        <i class="fas fa-volume-high"></i>
+      </button>
+      <button id="accessibilityBtnIframe" class="breadcrumb-action-btn-iframe" title="Accessibility Options" aria-label="Accessibility Options">
+        <i class="fas fa-universal-access"></i>
+      </button>
+      <button id="shareBtnIframe" class="breadcrumb-action-btn-iframe" title="Share Page" aria-label="Share Page">
+        <i class="fas fa-share-alt"></i>
+      </button>
+      <button id="pageStatsBtnIframe" class="breadcrumb-action-btn-iframe" aria-label="Show Page Statistics" title="Show Page Statistics">
+        <i class="fas fa-info-circle"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="preview-content-area-iframe">
+    <nav id="previewFixedSidebarIframe" class="preview-sidebar-iframe" aria-label="Main Navigation">
+      <div id="relatedSitesContainerIframe"></div>
+      <div class="sidebar-view-container-iframe">
+        <div id="previewSidebarPageListIframe" class="sidebar-view-iframe active-view"></div>
+        <div id="previewSidebarOutlineListIframe" class="sidebar-view-iframe document-outline-list-iframe"></div>
+      </div>
+      <div class="sidebar-bottom-controls-iframe">
+        <div style="display: flex; gap: 8px; width: 100%;">
+          <button id="sidebarToggleBtnIframe" class="sidebar-toggle-btn-iframe" style="flex-grow: 1;" aria-label="Toggle Document Outline">
+            <i class="fas fa-list-ul"></i>
+            <span class="btn-text">Document Outline</span>
+          </button>
+          <button id="pptModeBtnIframe" class="sidebar-toggle-btn-iframe" style="width: 42px; flex-grow: 0; justify-content: center;" aria-label="Presentation Mode" title="Presentation Mode">
+             <i class="fas fa-tv"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="main-content-iframe" id="mainContentIframe">
+      <div class="content-wrapper-iframe">
+        <div id="actualPageContentIframe" class="actual-page-content-iframe" aria-live="polite"></div>
+      </div>
+      <div id="previewPaginationIframe" class="preview-pagination-iframe">
+        <button id="prevPageBtnIframe" class="pagination-button-iframe" aria-label="Previous Page" disabled=""><i class="fas fa-chevron-left"></i></button>
+        <button id="nextPageBtnIframe" class="pagination-button-iframe" aria-label="Next Page"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </main>
+  </div>
+
+  <div id="mobileSidebarOverlayIframe" class="mobile-sidebar-overlay-iframe">
+    <nav id="mobileSidebarIframe" class="mobile-sidebar-iframe" aria-label="Mobile Navigation">
+      <div class="sidebar-logo-section-iframe">
+        <img src="" alt="Logo" class="arvia-logo-iframe" id="mobileHeaderLogo" style="display:none;">
+        <span class="arvia-text-iframe" id="mobileHeaderTitle" style="font-size:1.5rem"></span>
+      </div>
+      <div id="mobileRelatedSitesContainerIframe"></div>
+      <div class="sidebar-view-container-iframe">
+        <div id="mobileSidebarPageListIframe" class="sidebar-view-iframe active-view"></div>
+        <div id="mobileSidebarOutlineListIframe" class="sidebar-view-iframe document-outline-list-iframe"></div>
+      </div>
+      <div class="sidebar-bottom-controls-iframe">
+        <button id="mobileSidebarToggleBtnIframe" class="sidebar-toggle-btn-iframe" aria-label="Toggle Document Outline">
+          <i class="fas fa-list-ul"></i>
+          <span class="btn-text">Document Outline</span>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <div id="arviaPreviewOverlay" class="arvia-preview-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <button id="arviaPreviewGoToBtn" class="arvia-preview-goto" aria-label="Open original source" title="Open original source"><i class="fas fa-external-link-alt"></i></button>
+    <button id="arviaPreviewCloseBtn" class="arvia-preview-close" aria-label="Close preview">×</button>
+    <div class="arvia-preview-loader"></div>
+    <div id="arviaPreviewContent" class="arvia-preview-content"></div>
+    <div id="arviaPreviewCaption" class="arvia-preview-caption"></div>
+  </div>
+
+  <div id="pageStatsOverlayIframe" class="page-stats-overlay-iframe" role="dialog" aria-modal="true" aria-hidden="true">
+    <div id="pageStatsModalIframe" class="page-stats-modal-iframe">
+      <h2 class="stats-title">Page Statistics</h2>
+      <div id="statsContentIframe" class="stats-content"></div>
+    </div>
+  </div>
+
+  <div id="accessibilityOverlayIframe" class="page-stats-overlay-iframe" role="dialog" aria-modal="true" aria-hidden="true">
+    <div id="accessibilityModalIframe" class="page-stats-modal-iframe">
+      <h2 class="stats-title">Accessibility</h2>
+      <div class="accessibility-controls">
+        <div class="a11y-row">
+          <label>Font Size</label>
+          <div class="a11y-btn-group">
+            <button id="decreaseFontBtn" class="a11y-btn" title="Decrease Font Size"><i class="fas fa-minus"></i></button>
+            <button id="resetFontBtn" class="a11y-btn" title="Reset Font Size"><i class="fas fa-sync-alt"></i></button>
+            <button id="increaseFontBtn" class="a11y-btn" title="Increase Font Size"><i class="fas fa-plus"></i></button>
+          </div>
+        </div>
+        <div class="a11y-row">
+          <label>Contrast Mode</label>
+          <button id="contrastToggleBtn" class="a11y-toggle-btn">
+            <span class="toggle-status">Normal</span>
+            <i class="fas fa-adjust"></i>
+          </button>
+        </div>
+        <div class="a11y-row">
+          <label>Saturation</label>
+          <button id="saturationToggleBtn" class="a11y-toggle-btn">
+            <span class="toggle-status">Color</span>
+            <i class="fas fa-palette"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="progress-container-iframe">
+    <div id="progressBarIframe" class="progress-bar-iframe"></div>
+  </div>
+  <button id="scrollToTopBtnIframe" class="scroll-to-top-btn-iframe" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
+
+  <!-- Local Scripts -->
+  <script src="security.js"></script>
+  <script src="config.js"></script>
+  <script src="editor.js"></script>
+  <script src="core.js"></script>
+  <script src="ppt.js"></script>
+  <script src="ui.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+  <script>eruda.init();</script>
+  
+    <script src="ai.js" defer=""></script>
+  
+
+
+
+</body></html>
