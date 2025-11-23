@@ -2,7 +2,7 @@
   let e = document
     .createElement("style");
   e.textContent =
-    `#aiChatBtn{font-size:20px;color:#c9d1d9;background:none;border:none;cursor:pointer;padding:.5rem;transition:all .4s cubic-bezier(.34,1.56,.64,1);display:flex;align-items:center;justify-content:center;border-radius:50%;width:56px;height:56px;position:relative}#aiChatBtn img{width:85%;height:85%;object-fit:contain;transition:all .4s cubic-bezier(.34,1.56,.64,1);filter:drop-shadow(0 2px 8px rgba(249,115,22,.3))}#aiChatBtn:hover img{transform:scale(1.15) rotate(5deg);filter:drop-shadow(0 4px 16px rgba(249,115,22,.5))}#aiChatBtn:active img{transform:scale(.9) rotate(-5deg)}#aiChatContainer{position:fixed;z-index:2001;background:#0d1117;border:1px solid #21262d;box-shadow:0 -10px 60px rgba(0,0,0,.7),0 -2px 20px rgba(249,115,22,.1),inset 0 1px 0 rgba(255,255,255,.03);display:none;flex-direction:column;opacity:0;transition:all .6s cubic-bezier(.34,1.56,.64,1);backdrop-filter:blur(20px);overflow:hidden}#aiChatContainer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(249,115,22,.3) 30%,rgba(249,115,22,.3) 70%,transparent);pointer-events:none;z-index:2}#aiChatContainer::after{content:'';position:absolute;top:1px;left:0;right:0;height:40px;background:linear-gradient(180deg,rgba(22,27,34,.95) 0%,rgba(22,27,34,.7) 50%,transparent 100%);pointer-events:none;z-index:1}#aiChatContainer.show{display:flex;opacity:1}@media(max-width:768px){#aiChatContainer{bottom:-100%;left:0;width:100%;height:60%;border-radius:24px 24px 0 0;border-bottom:none}#aiChatContainer.show{bottom:0}}@media(min-width:769px){#aiChatContainer{bottom:-100%;right:1.5rem;width:440px;height:600px;border-radius:20px}#aiChatContainer.show{bottom:1.5rem}}#aiChatMessages{flex:1;overflow-y:auto;padding:3rem 1.5rem 1.5rem;display:flex;flex-direction:column;gap:1.2rem;background:#0d1117;position:relative;scroll-behavior:smooth}#aiChatMessages::-webkit-scrollbar{width:6px}#aiChatMessages::-webkit-scrollbar-track{background:transparent}#aiChatMessages::-webkit-scrollbar-thumb{background:#30363d;border-radius:6px;transition:background .3s}#aiChatMessages::-webkit-scrollbar-thumb:hover{background:#484f58}.ai-msg{padding:1rem 1.25rem;border-radius:16px;max-width:100%;word-wrap:break-word;animation:slideUp .6s cubic-bezier(.34,1.56,.64,1);line-height:1.65;font-size:.9rem;transition:all .35s cubic-bezier(.4,0,.2,1);position:relative}.user-msg{background:linear-gradient(135deg,#161b22 0%,#1c2128 100%);color:#c9d1d9;width:82%;align-self:flex-end;margin-left:auto;border:1px solid #21262d;box-shadow:0 4px 12px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.05);border-radius:18px 18px 4px 18px}.user-msg:hover{background:linear-gradient(135deg,#1c2128 0%,#21262d 100%);border-color:#30363d;transform:translateX(-3px) translateY(-1px);box-shadow:0 6px 20px rgba(0,0,0,.35)}.bot-msg{background:transparent;color:#c9d1d9;width:100%;padding-left:1.5rem;border-left:3px solid transparent;border-radius:12px;transition:all .35s;cursor:pointer}.bot-msg::before{content:'';position:absolute;left:-3px;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#f97316,#ea580c);border-radius:2px;opacity:0;transition:opacity .35s}.bot-msg:hover{color:#fff;transform:translateX(4px)}.bot-msg:hover::before{opacity:1}.bot-msg h1,.bot-msg h2,.bot-msg h3,.bot-msg h4,.bot-msg h5,.bot-msg h6{color:#fb923c;margin-top:1.2rem;margin-bottom:.6rem;font-weight:600;line-height:1.3}.bot-msg h1{font-size:1.5rem;border-bottom:2px solid rgba(249,115,22,.2);padding-bottom:.4rem}.bot-msg h2{font-size:1.25rem}.bot-msg h3{font-size:1.1rem}.bot-msg h4{font-size:1rem}.bot-msg h5{font-size:0.95rem}.bot-msg h6{font-size:0.9rem}.bot-msg p{margin:.6rem 0;line-height:1.75}.bot-msg code{background:#161b22;color:#fb923c;padding:.25rem .5rem;border-radius:6px;font-size:.85rem;font-family:ui-monospace,monospace;border:1px solid #21262d;box-shadow:inset 0 1px 3px rgba(0,0,0,.2)}.bot-msg pre{background:#0d1117;border:1px solid #21262d;border-radius:12px;padding:0;margin:1rem 0;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.03);position:relative;max-height:400px}.bot-msg pre .code-header{display:flex;justify-content:space-between;align-items:center;padding:.4rem .75rem;background:#161b22;border-bottom:1px solid #21262d;min-height:32px}.bot-msg pre .code-lang{color:#8b949e;font-size:.7rem;font-family:ui-monospace,monospace;text-transform:uppercase;letter-spacing:.5px}.bot-msg pre .code-copy{background:transparent;border:1px solid #21262d;color:#8b949e;padding:.2rem .5rem;border-radius:4px;cursor:pointer;font-size:.65rem;transition:all .3s;white-space:nowrap;display:inline-flex;align-items:center;gap:.25rem;min-width:55px;justify-content:center}.bot-msg pre .code-copy:hover{background:#0d1117;color:#c9d1d9;border-color:#30363d}.bot-msg pre .code-copy i{font-size:.65rem}.bot-msg pre code{background:transparent;border:none;padding:1.25rem;display:block;color:#c9d1d9;font-size:.85rem;overflow-x:auto;max-width:100%}.bot-msg pre code::-webkit-scrollbar{height:8px}.bot-msg pre code::-webkit-scrollbar-track{background:#161b22}.bot-msg pre code::-webkit-scrollbar-thumb{background:#30363d;border-radius:4px}.bot-msg pre code::-webkit-scrollbar-thumb:hover{background:#484f58}.table-wrapper{overflow-x:auto;margin:1rem 0;border-radius:8px;border:1px solid #21262d;max-height:400px;overflow-y:auto}.table-wrapper::-webkit-scrollbar{width:8px;height:8px}.table-wrapper::-webkit-scrollbar-track{background:#161b22}.table-wrapper::-webkit-scrollbar-thumb{background:#30363d;border-radius:4px}.table-wrapper::-webkit-scrollbar-thumb:hover{background:#484f58}.bot-msg table{width:100%;border-collapse:collapse;font-size:.85rem;margin:0}.bot-msg th,.bot-msg td{border:1px solid #21262d;padding:.65rem;text-align:left;white-space:nowrap}.bot-msg th{background:linear-gradient(135deg,#161b22,#1c2128);color:#fb923c;font-weight:600;position:sticky;top:0;z-index:1}.bot-msg ul,.bot-msg ol{margin:.6rem 0;padding-left:1.75rem}.bot-msg li{margin:.4rem 0;line-height:1.7}.bot-msg blockquote{border-left:4px solid #f97316;padding:.75rem 1.25rem;margin:1rem 0;color:#8b949e;font-style:italic;background:linear-gradient(90deg,rgba(249,115,22,.08),transparent);border-radius:0 12px 12px 0;box-shadow:inset 4px 0 8px rgba(249,115,22,.1)}.bot-msg strong{color:#fb923c;font-weight:600}.bot-msg em{color:#a8b3c1;font-style:italic}.bot-msg a{color:#f97316;text-decoration:underline;transition:all .25s}.bot-msg a:hover{color:#fb923c;text-decoration:none}.bot-msg .katex{color:#c9d1d9;font-size:1rem}.bot-msg .katex-display{color:#c9d1d9;font-size:1rem;overflow-x:auto;max-width:100%;display:block;padding:1rem;background:#161b22;border-radius:8px;margin:1rem 0;border:1px solid #21262d;max-height:300px;overflow-y:auto}.bot-msg .katex-display::-webkit-scrollbar{width:8px;height:8px}.bot-msg .katex-display::-webkit-scrollbar-track{background:#0d1117}.bot-msg .katex-display::-webkit-scrollbar-thumb{background:#30363d;border-radius:4px}.bot-msg hr{border:none;border-top:1px solid rgba(249,115,22,.2);margin:1.25rem 0;box-shadow:0 1px 0 rgba(0,0,0,.3)}.bot-msg img{max-width:100%;height:auto;border-radius:12px;margin:1rem 0;box-shadow:0 4px 12px rgba(0,0,0,.3);border:1px solid #21262d}.bot-msg-actions{display:none;gap:.5rem;margin-top:.75rem;padding-top:.75rem;border-top:1px solid #21262d;flex-wrap:wrap}.bot-msg.active .bot-msg-actions{display:flex}.bot-msg-action-btn{background:linear-gradient(135deg,#161b22,#1c2128);color:#8b949e;border:1px solid #21262d;padding:.5rem .85rem;border-radius:8px;cursor:pointer;font-size:.8rem;transition:all .3s;display:flex;align-items:center;gap:.4rem;white-space:nowrap}.bot-msg-action-btn:hover{background:linear-gradient(135deg,#1c2128,#21262d);color:#c9d1d9;border-color:#30363d;transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.3)}.bot-msg-action-btn:active{transform:translateY(0)}.bot-msg-action-btn i{font-size:.9rem}.sources-dropdown{display:none;margin-top:.75rem;padding:1rem;background:#161b22;border:1px solid #21262d;border-radius:12px;max-height:250px;overflow-y:auto;animation:slideDown .3s cubic-bezier(.34,1.56,.64,1)}.sources-dropdown.show{display:block}.sources-dropdown::-webkit-scrollbar{width:6px}.sources-dropdown::-webkit-scrollbar-track{background:#0d1117}.sources-dropdown::-webkit-scrollbar-thumb{background:#30363d;border-radius:4px}.sources-dropdown::-webkit-scrollbar-thumb:hover{background:#484f58}.sources-dropdown-title{color:#fb923c;font-size:.9rem;font-weight:600;margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}.sources-dropdown-title i{font-size:.85rem}.source-item{padding:.65rem .85rem;margin:.4rem 0;background:#0d1117;border-left:3px solid #f97316;border-radius:6px;font-size:.8rem;line-height:1.5;color:#c9d1d9;transition:all .3s}.source-item:hover{background:#161b22;border-left-width:4px;transform:translateX(2px)}.source-item .source-text{color:#8b949e}@keyframes slideDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}@media(max-width:768px){.bot-msg-action-btn{padding:.5rem;min-width:38px;justify-content:center}.bot-msg-action-btn .btn-text{display:none}}@keyframes slideUp{from{opacity:0;transform:translateY(25px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}#aiChatInputArea{display:flex;align-items:center;padding:1.25rem;background:linear-gradient(135deg,#161b22,#1c2128);border-top:1px solid #21262d;box-shadow:0 -6px 20px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.03);border-radius:20px;margin:1rem;gap:.5rem;transition:all .35s cubic-bezier(.4,0,.2,1)}#aiChatInputArea:focus-within{box-shadow:0 -8px 30px rgba(249,115,22,.15),0 0 0 2px rgba(249,115,22,.2),inset 0 1px 0 rgba(255,255,255,.05);transform:translateY(-2px)}#aiChatInput{flex:1;background:transparent;border:none;color:#c9d1d9;padding:.95rem 1.25rem;font-size:.95rem;font-family:inherit;outline:none;transition:all .3s}#aiChatInput::placeholder{color:#6e7681;transition:color .3s}#aiChatInput:focus::placeholder{color:#8b949e}#aiChatSend{background:linear-gradient(135deg,#484f58,#30363d);color:#6e7681;border:none;padding:0;width:40px;height:40px;border-radius:50%;cursor:pointer;transition:all .35s cubic-bezier(.34,1.56,.64,1);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.2);position:relative}#aiChatSend.active{background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;box-shadow:0 4px 16px rgba(249,115,22,.4);cursor:pointer}#aiChatSend.active:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 8px 24px rgba(249,115,22,.5)}#aiChatSend.active:active{transform:translateY(-1px) scale(1);box-shadow:0 4px 12px rgba(249,115,22,.3)}#aiChatSend:disabled{opacity:.4;cursor:not-allowed;transform:none;background:linear-gradient(135deg,#30363d,#21262d)}#aiChatSend i{transition:transform .35s cubic-bezier(.34,1.56,.64,1)}#aiChatSend.active i{transform:translateY(-1px)}.thinking-indicator{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;animation:slideUp .6s cubic-bezier(.34,1.56,.64,1);background:transparent;border-radius:16px}.thinking-logo-wrapper{position:relative;width:45px;height:45px;flex-shrink:0}.thinking-logo{width:100%;height:100%;object-fit:contain;animation:rotateAndPulse 2s linear infinite;filter:drop-shadow(0 0 8px rgba(249,115,22,.5))}.thinking-glow{position:absolute;top:50%;left:50%;width:100%;height:100%;border-radius:50%;background:radial-gradient(circle,rgba(249,115,22,.3),transparent);transform:translate(-50%,-50%);animation:pulseGlow 2s ease-in-out infinite;pointer-events:none}@keyframes rotateAndPulse{0%{transform:rotate(0deg) scale(1)}25%{transform:rotate(90deg) scale(1.1)}50%{transform:rotate(180deg) scale(1)}75%{transform:rotate(270deg) scale(1.1)}100%{transform:rotate(360deg) scale(1)}}@keyframes pulseGlow{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.3}50%{transform:translate(-50%,-50%) scale(1.8);opacity:0}}.thinking-text{color:#8b949e;font-size:.9rem;animation:fadeInOut 1.5s ease-in-out infinite}.thinking-status{color:#fb923c;font-weight:500}@keyframes fadeInOut{0%,100%{opacity:.6}50%{opacity:1}}.initial-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;padding:2rem;opacity:.8}.initial-screen-title{font-size:1rem;font-weight:700;color:#fb923c;margin-bottom:.5rem;background:linear-gradient(135deg,#f97316,#fb923c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.initial-screen-subtitle{font-size:.95rem;color:#8b949e;line-height:1.6;max-width:320px}.resize-handle{position:absolute;top:0;left:0;right:0;height:8px;cursor:ns-resize;z-index:10;background:transparent;transition:background .3s}.resize-handle:hover{background:linear-gradient(180deg,rgba(249,115,22,.2),transparent)}`,
+    `#aiChatBtn{font-size:20px;color:#c9d1d9;background:none;border:none;cursor:pointer;padding:.5rem;transition:all .4s cubic-bezier(.34,1.56,.64,1);display:flex;align-items:center;justify-content:center;border-radius:50%;width:56px;height:56px;position:relative}#aiChatBtn img{width:85%;height:85%;object-fit:contain;transition:all .4s cubic-bezier(.34,1.56,.64,1);filter:drop-shadow(0 2px 8px rgba(249,115,22,.3))}#aiChatBtn:hover img{transform:scale(1.15) rotate(5deg);filter:drop-shadow(0 4px 16px rgba(249,115,22,.5))}#aiChatBtn:active img{transform:scale(.9) rotate(-5deg)}#aiChatContainer{position:fixed;z-index:2001;background:#0d1117;border:1px solid #21262d;box-shadow:0 -10px 60px rgba(0,0,0,.7),0 -2px 20px rgba(249,115,22,.1),inset 0 1px 0 rgba(255,255,255,.03);display:none;flex-direction:column;opacity:0;transition:all .6s cubic-bezier(.34,1.56,.64,1);backdrop-filter:blur(20px);overflow:hidden}#aiChatContainer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(249,115,22,.3) 30%,rgba(249,115,22,.3) 70%,transparent);pointer-events:none;z-index:2}#aiChatContainer::after{content:'';position:absolute;top:1px;left:0;right:0;height:40px;background:linear-gradient(180deg,rgba(22,27,34,.95) 0%,rgba(22,27,34,.7) 50%,transparent 100%);pointer-events:none;z-index:1}#aiChatContainer.show{display:flex;opacity:1}@media(max-width:768px){#aiChatContainer{bottom:-100%;left:0;width:100%;height:60%;border-radius:24px 24px 0 0;border-bottom:none}#aiChatContainer.show{bottom:0}}@media(min-width:769px){#aiChatContainer{bottom:-100%;right:1.5rem;width:440px;height:600px;border-radius:20px}#aiChatContainer.show{bottom:1.5rem}}#aiChatMessages{flex:1;overflow-y:auto;padding:3rem 1.5rem 1.5rem;display:flex;flex-direction:column;gap:1.2rem;background:#0d1117;position:relative;scroll-behavior:auto}#aiChatMessages::-webkit-scrollbar{width:6px}#aiChatMessages::-webkit-scrollbar-track{background:transparent}#aiChatMessages::-webkit-scrollbar-thumb{background:#30363d;border-radius:6px;transition:background .3s}#aiChatMessages::-webkit-scrollbar-thumb:hover{background:#484f58}.scroll-anchor{height:1px;width:100%;position:absolute;bottom:0}.ai-msg{padding:1rem 1.25rem;border-radius:16px;max-width:100%;word-wrap:break-word;animation:slideUp .6s cubic-bezier(.34,1.56,.64,1);line-height:1.65;font-size:.9rem;transition:all .35s cubic-bezier(.4,0,.2,1);position:relative}.user-msg{background:linear-gradient(135deg,#161b22 0%,#1c2128 100%);color:#c9d1d9;width:82%;align-self:flex-end;margin-left:auto;border:1px solid #21262d;box-shadow:0 4px 12px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.05);border-radius:18px 18px 4px 18px}.user-msg:hover{background:linear-gradient(135deg,#1c2128 0%,#21262d 100%);border-color:#30363d;transform:translateX(-3px) translateY(-1px);box-shadow:0 6px 20px rgba(0,0,0,.35)}.bot-msg{background:transparent;color:#c9d1d9;width:100%;padding-left:1.5rem;border-left:3px solid transparent;border-radius:12px;transition:all .35s;cursor:pointer}.bot-msg::before{content:'';position:absolute;left:-3px;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#f97316,#ea580c);border-radius:2px;opacity:0;transition:opacity .35s}.bot-msg:hover{color:#fff;transform:translateX(4px)}.bot-msg:hover::before{opacity:1}.bot-msg h1,.bot-msg h2,.bot-msg h3,.bot-msg h4,.bot-msg h5,.bot-msg h6{color:#fb923c;margin-top:1.2rem;margin-bottom:.6rem;font-weight:600;line-height:1.3}.bot-msg h1{font-size:1.5rem;border-bottom:2px solid rgba(249,115,22,.2);padding-bottom:.4rem}.bot-msg h2{font-size:1.25rem}.bot-msg h3{font-size:1.1rem}.bot-msg h4{font-size:1rem}.bot-msg h5{font-size:0.95rem}.bot-msg h6{font-size:0.9rem}.bot-msg p{margin:.6rem 0;line-height:1.75}.bot-msg code{background:#161b22;color:#fb923c;padding:.25rem .5rem;border-radius:6px;font-size:.85rem;font-family:ui-monospace,monospace;border:1px solid #21262d;box-shadow:inset 0 1px 3px rgba(0,0,0,.2)}.bot-msg pre{background:#0d1117;border:1px solid #21262d;border-radius:12px;padding:0;margin:1rem 0;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.03);position:relative;max-height:400px}.bot-msg pre .code-header{display:flex;justify-content:space-between;align-items:center;padding:.4rem .75rem;background:#161b22;border-bottom:1px solid #21262d;min-height:32px}.bot-msg pre .code-lang{color:#8b949e;font-size:.7rem;font-family:ui-monospace,monospace;text-transform:uppercase;letter-spacing:.5px}.bot-msg pre .code-copy{background:transparent;border:1px solid #21262d;color:#8b949e;padding:.2rem .5rem;border-radius:4px;cursor:pointer;font-size:.65rem;transition:all .3s;white-space:nowrap;display:inline-flex;align-items:center;gap:.25rem;min-width:55px;justify-content:center}.bot-msg pre .code-copy:hover{background:#0d1117;color:#c9d1d9;border-color:#30363d}.bot-msg pre .code-copy i{font-size:.65rem}.bot-msg pre code{background:transparent;border:none;padding:1.25rem;display:block;color:#c9d1d9;font-size:.85rem;overflow-x:auto;max-width:100%}.bot-msg pre code::-webkit-scrollbar{height:8px}.bot-msg pre code::-webkit-scrollbar-track{background:#161b22}.bot-msg pre code::-webkit-scrollbar-thumb{background:#30363d;border-radius:4px}.bot-msg pre code::-webkit-scrollbar-thumb:hover{background:#484f58}.table-wrapper{overflow-x:auto;margin:1rem 0;border-radius:8px;border:1px solid #21262d;max-height:400px;overflow-y:auto}.table-wrapper::-webkit-scrollbar{width:8px;height:8px}.table-wrapper::-webkit-scrollbar-track{background:#161b22}.table-wrapper::-webkit-scrollbar-thumb{background:#30363d;border-radius:4px}.table-wrapper::-webkit-scrollbar-thumb:hover{background:#484f58}.bot-msg table{width:100%;border-collapse:collapse;font-size:.85rem;margin:0}.bot-msg th,.bot-msg td{border:1px solid #21262d;padding:.65rem;text-align:left;white-space:nowrap}.bot-msg th{background:linear-gradient(135deg,#161b22,#1c2128);color:#fb923c;font-weight:600;position:sticky;top:0;z-index:1}.bot-msg ul,.bot-msg ol{margin:.6rem 0;padding-left:1.75rem}.bot-msg li{margin:.4rem 0;line-height:1.7}.bot-msg blockquote{border-left:4px solid #f97316;padding:.75rem 1.25rem;margin:1rem 0;color:#8b949e;font-style:italic;background:linear-gradient(90deg,rgba(249,115,22,.08),transparent);border-radius:0 12px 12px 0;box-shadow:inset 4px 0 8px rgba(249,115,22,.1)}.bot-msg strong{color:#fb923c;font-weight:600}.bot-msg em{color:#a8b3c1;font-style:italic}.bot-msg a{color:#f97316;text-decoration:underline;transition:all .25s}.bot-msg a:hover{color:#fb923c;text-decoration:none}.bot-msg .katex{color:#c9d1d9;font-size:1rem}.bot-msg .katex-display{color:#c9d1d9;font-size:1rem;overflow-x:auto;max-width:100%;display:block;padding:1rem;background:#161b22;border-radius:8px;margin:1rem 0;border:1px solid #21262d;max-height:300px;overflow-y:auto}.bot-msg .katex-display::-webkit-scrollbar{width:8px;height:8px}.bot-msg .katex-display::-webkit-scrollbar-track{background:#0d1117}.bot-msg .katex-display::-webkit-scrollbar-thumb{background:#30363d;border-radius:4px}.bot-msg hr{border:none;border-top:1px solid rgba(249,115,22,.2);margin:1.25rem 0;box-shadow:0 1px 0 rgba(0,0,0,.3)}.bot-msg img{max-width:100%;height:auto;border-radius:12px;margin:1rem 0;box-shadow:0 4px 12px rgba(0,0,0,.3);border:1px solid #21262d;background:linear-gradient(90deg,#161b22 0%,#1c2128 50%,#161b22 100%);background-size:200% 100%;transition:opacity .3s}.bot-msg img.loading{animation:shimmer 1.5s infinite linear}.bot-msg img.loaded{animation:none}@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}.skeleton-box{background:linear-gradient(90deg,#161b22 0%,#1c2128 50%,#161b22 100%);background-size:200% 100%;animation:shimmer 1.5s infinite linear;border-radius:8px}.bot-msg-actions{display:none;gap:.5rem;margin-top:.75rem;padding-top:.75rem;border-top:1px solid #21262d;flex-wrap:wrap}.bot-msg.active .bot-msg-actions{display:flex}.bot-msg-action-btn{background:linear-gradient(135deg,#161b22,#1c2128);color:#8b949e;border:1px solid #21262d;padding:.5rem .85rem;border-radius:8px;cursor:pointer;font-size:.8rem;transition:all .3s;display:flex;align-items:center;gap:.4rem;white-space:nowrap}.bot-msg-action-btn:hover{background:linear-gradient(135deg,#1c2128,#21262d);color:#c9d1d9;border-color:#30363d;transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.3)}.bot-msg-action-btn:active{transform:translateY(0)}.bot-msg-action-btn i{font-size:.9rem}.sources-dropdown{display:none;margin-top:.75rem;padding:1rem;background:#161b22;border:1px solid #21262d;border-radius:12px;max-height:250px;overflow-y:auto;animation:slideDown .3s cubic-bezier(.34,1.56,.64,1)}.sources-dropdown.show{display:block}.sources-dropdown::-webkit-scrollbar{width:6px}.sources-dropdown::-webkit-scrollbar-track{background:#0d1117}.sources-dropdown::-webkit-scrollbar-thumb{background:#30363d;border-radius:4px}.sources-dropdown::-webkit-scrollbar-thumb:hover{background:#484f58}.sources-dropdown-title{color:#fb923c;font-size:.9rem;font-weight:600;margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}.sources-dropdown-title i{font-size:.85rem}.source-item{padding:.65rem .85rem;margin:.4rem 0;background:#0d1117;border-left:3px solid #f97316;border-radius:6px;font-size:.8rem;line-height:1.5;color:#c9d1d9;transition:all .3s}.source-item:hover{background:#161b22;border-left-width:4px;transform:translateX(2px)}.source-item .source-text{color:#8b949e}@keyframes slideDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}@media(max-width:768px){.bot-msg-action-btn{padding:.5rem;min-width:38px;justify-content:center}.bot-msg-action-btn .btn-text{display:none}}@keyframes slideUp{from{opacity:0;transform:translateY(25px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}#aiChatInputArea{display:flex;align-items:center;padding:1.25rem;background:linear-gradient(135deg,#161b22,#1c2128);border-top:1px solid #21262d;box-shadow:0 -6px 20px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.03);border-radius:20px;margin:1rem;gap:.5rem;transition:all .35s cubic-bezier(.4,0,.2,1)}#aiChatInputArea:focus-within{box-shadow:0 -8px 30px rgba(249,115,22,.15),0 0 0 2px rgba(249,115,22,.2),inset 0 1px 0 rgba(255,255,255,.05);transform:translateY(-2px)}#aiChatInput{flex:1;background:transparent;border:none;color:#c9d1d9;padding:.95rem 1.25rem;font-size:.95rem;font-family:inherit;outline:none;transition:all .3s}#aiChatInput::placeholder{color:#6e7681;transition:color .3s}#aiChatInput:focus::placeholder{color:#8b949e}#aiChatSend{background:linear-gradient(135deg,#484f58,#30363d);color:#6e7681;border:none;padding:0;width:40px;height:40px;border-radius:50%;cursor:pointer;transition:all .35s cubic-bezier(.34,1.56,.64,1);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.2);position:relative}#aiChatSend.active{background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;box-shadow:0 4px 16px rgba(249,115,22,.4);cursor:pointer}#aiChatSend.active:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 8px 24px rgba(249,115,22,.5)}#aiChatSend.active:active{transform:translateY(-1px) scale(1);box-shadow:0 4px 12px rgba(249,115,22,.3)}#aiChatSend:disabled{opacity:.4;cursor:not-allowed;transform:none;background:linear-gradient(135deg,#30363d,#21262d)}#aiChatSend i{transition:transform .35s cubic-bezier(.34,1.56,.64,1)}#aiChatSend.active i{transform:translateY(-1px)}.thinking-indicator{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;animation:slideUp .6s cubic-bezier(.34,1.56,.64,1);background:transparent;border-radius:16px}.thinking-logo-wrapper{position:relative;width:45px;height:45px;flex-shrink:0}.thinking-logo{width:100%;height:100%;object-fit:contain;animation:rotateAndPulse 2s linear infinite;filter:drop-shadow(0 0 8px rgba(249,115,22,.5))}.thinking-glow{position:absolute;top:50%;left:50%;width:100%;height:100%;border-radius:50%;background:radial-gradient(circle,rgba(249,115,22,.3),transparent);transform:translate(-50%,-50%);animation:pulseGlow 2s ease-in-out infinite;pointer-events:none}@keyframes rotateAndPulse{0%{transform:rotate(0deg) scale(1)}25%{transform:rotate(90deg) scale(1.1)}50%{transform:rotate(180deg) scale(1)}75%{transform:rotate(270deg) scale(1.1)}100%{transform:rotate(360deg) scale(1)}}@keyframes pulseGlow{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.3}50%{transform:translate(-50%,-50%) scale(1.8);opacity:0}}.thinking-text{color:#8b949e;font-size:.9rem;animation:fadeInOut 1.5s ease-in-out infinite}.thinking-status{color:#fb923c;font-weight:500}@keyframes fadeInOut{0%,100%{opacity:.6}50%{opacity:1}}.initial-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;padding:2rem;opacity:.8}.initial-screen-title{font-size:1rem;font-weight:700;color:#fb923c;margin-bottom:.5rem;background:linear-gradient(135deg,#f97316,#fb923c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.initial-screen-subtitle{font-size:.95rem;color:#8b949e;line-height:1.6;max-width:320px}.resize-handle{position:absolute;top:0;left:0;right:0;height:8px;cursor:ns-resize;z-index:10;background:transparent;transition:background .3s}.resize-handle:hover{background:linear-gradient(180deg,rgba(249,115,22,.2),transparent)}`,
     document.head.appendChild(e);
   [{
     type: "link",
@@ -54,7 +54,7 @@
     n = document.createElement("div");
   n.id = "aiChatContainer", n
     .innerHTML =
-    `<div class="resize-handle"></div><div id="aiChatMessages"><div class="initial-screen"><div class="initial-screen-title">Ask ARai anything</div><div class="initial-screen-subtitle">Get contextual help about this page or ask general questions.</div></div></div><div id="aiChatInputArea"><input type="text" id="aiChatInput" placeholder="Ask me anything..." maxlength="500" readonly autocomplete="off"><button id="aiChatSend" aria-label="Send message" disabled><i class="fas fa-arrow-up"></i></button></div>`,
+    `<div class="resize-handle"></div><div id="aiChatMessages"><div class="initial-screen"><div class="initial-screen-title">Ask ARai anything</div><div class="initial-screen-subtitle">Get contextual help about this page or ask general questions.</div></div><div class="scroll-anchor"></div></div><div id="aiChatInputArea"><input type="text" id="aiChatInput" placeholder="Ask me anything..." maxlength="500" readonly autocomplete="off"><button id="aiChatSend" aria-label="Send message" disabled><i class="fas fa-arrow-up"></i></button></div>`,
     document.body.appendChild(n);
   let
     i = document.getElementById(
@@ -69,69 +69,104 @@
     m = null,
     g = new Map,
     b = null,
-    h = null;
+    h = null,
+    u = null,
+    _ = !0,
+    $ = null;
   ! function() {
-    let e = n
-      .querySelector(
-        ".resize-handle");
-    if (!e)
-      return;
-    let t = !1,
-      r = 0,
-      a = 0;
-    e.addEventListener("mousedown",
+    try {
+      let
+        e = n.querySelector(
+          ".resize-handle");
+      if (!e)
+        return;
+      let t = !1,
+        r = 0,
+        a = 0;
+      e.addEventListener("mousedown",
+          e => {
+            t = !0, r = e.clientY,
+              a = n.offsetHeight, e
+              .preventDefault(),
+              document.body.style
+              .userSelect = "none"
+          }), e
+        .addEventListener("touchstart",
+          e => {
+            t = !0, r = e.touches[
+                0].clientY, a = n
+              .offsetHeight, e
+              .preventDefault()
+          }, {
+            passive:
+              !1
+          }), document
+        .addEventListener("mousemove",
+          e => {
+            if (!t) return;
+            let i =
+              r - e.clientY,
+              s = Math.min(Math.max(a +
+                  i, 300), window
+                .innerHeight - 100);
+            n.style.height = s + "px"
+          }
+        ), document.addEventListener(
+          "touchmove", e => {
+            if (!t)
+              return;
+            let i = r - e
+              .touches[0].clientY,
+              s = Math.min(Math.max(a +
+                  i, 300), window
+                .innerHeight - 100);
+            n.style.height = s +
+              "px"
+          }, { passive: !1 }),
+        document.addEventListener(
+          "mouseup", () => {
+            t && (t = !
+              1, document.body.style
+              .userSelect = "")
+          }),
+        document.addEventListener(
+          "touchend", () => {
+            t && (
+              t = !1)
+          })
+    } catch (
+      f) {
+      console.error(
+        "[ARai] Resize initialization error:",
+        f)
+    }
+  }(),
+  function() {
+    try {
+      let e = i
+        .querySelector(
+          ".scroll-anchor");
+      if (!e || !(
+          "IntersectionObserver" in
+          window)) return;
+      u = new IntersectionObserver(
         e => {
-          t = !0, r = e.clientY,
-            a = n.offsetHeight, e
-            .preventDefault(), document
-            .body.style.userSelect =
-            "none"
-        }), e.addEventListener(
-        "touchstart", e => {
-          t = !0, r =
-            e.touches[0].clientY, a = n
-            .offsetHeight, e
-            .preventDefault()
+          _ = e[0]
+            .isIntersecting
         }, {
-          passive:
-            !1
-        }), document
-      .addEventListener("mousemove",
-        e => {
-          if (!t) return;
-          let i =
-            r - e.clientY,
-            s = Math.min(Math.max(a + i,
-                300), window
-              .innerHeight - 100);
-          n.style.height = s + "px"
-        }),
-      document.addEventListener(
-        "touchmove", e => {
-          if (!t)
-            return;
-          let i = r - e
-            .touches[0].clientY,
-            s = Math.min(Math.max(a + i,
-                300), window
-              .innerHeight - 100);
-          n.style.height = s +
-            "px"
-        }, { passive: !1 }),
-      document.addEventListener(
-        "mouseup", () => {
-          t && (t = !1,
-            document.body.style
-            .userSelect = "")
-        }),
-      document.addEventListener(
-        "touchend", () => {
-          t && (t = !
-            1)
-        })
+          root: i,
+          threshold: 0
+        });
+      u.observe(e)
+    } catch (x) {
+      console
+        .error(
+          "[ARai] Scroll observer error:",
+          x)
+    }
   }();
   
-  function u(e, t) {
+  function f(e, t) {
     if (!e || !t ||
       "string" != typeof e ||
       "string" != typeof t) return !
@@ -144,7 +179,7 @@
       r) { return !1 }
   }
   
-  function $(e, t) {
+  function x(e, t) {
     if (!e ||
       "string" != typeof e)
       return "";
@@ -158,7 +193,7 @@
       r) { return e }
   }
   
-  function _(e) {
+  function y(e) {
     if (!e || "string" !=
       typeof e) return e ||
       "";
@@ -204,7 +239,7 @@
       r) { return e || "" }
   }
   
-  function f(e) {
+  function w(e) {
     if (!e || !Array
       .isArray(e) || 0 === e.length)
       return [];
@@ -220,7 +255,7 @@
       a) { return [] }
   }
   
-  function x(e) {
+  function v(e) {
     if (!e || !Array
       .isArray(e) || e.length < 2)
       return [];
@@ -238,7 +273,7 @@
       a) { return [] }
   }
   
-  function y(e, t) {
+  function k(e, t) {
     if (!e || !Array
       .isArray(e) || 0 === e.length || !
       t || !Array.isArray(t) || 0 === t
@@ -257,7 +292,7 @@
         if (!
           i) continue;
         let s = t.filter(
-            e => e && u(e, i)).length,
+            e => e && f(e, i)).length,
           l = o > 0 && s < o ? Math.log(
             (o - s + .5) / (s + .5) + 1
           ) : 0;
@@ -281,7 +316,7 @@
       h) { return {} }
   }
   
-  function w(e, t) {
+  function A(e, t) {
     if (!e || !Array
       .isArray(e) || 0 === e.length || !
       t || !Array.isArray(t) || 0 === t
@@ -301,7 +336,55 @@
       i) { return 0 }
   }
   
-  function v(e, t) {
+  function B(e) {
+    if (!e || "string" !=
+      typeof e || 0 === e.trim().length)
+      return null;
+    try {
+      return e.split(
+          "").map(e => e.charCodeAt(0))
+        .map(e =>
+          `${e<16?"0":""}${e.toString(16)}`
+        ).join("")
+    } catch (
+      t) { return null }
+  }
+  
+  function C(e) {
+    if (!e || "string" !=
+      typeof e || 0 === e.trim().length)
+      return null;
+    try {
+      let t = e
+        .match(/.{1,2}/g);
+      return t ? t
+        .map(e => String.fromCharCode(
+          parseInt(e, 16))).join("") :
+        ""
+    } catch (r) { return null }
+  }
+  
+  function E(e) {
+    if (_ && e) {
+      let t =
+        null;
+      $ && cancelAnimationFrame($), $ =
+        requestAnimationFrame(
+          () => {
+            try {
+              i
+                .scrollTo({
+                  top: i
+                    .scrollHeight,
+                  behavior: "smooth"
+                })
+            } catch (
+              r) {}
+          })
+    }
+  }
+  
+  function L(e, t) {
     if ("undefined" ==
       typeof marked || !e) return e ||
       "";
@@ -451,7 +534,7 @@
             let i = e
               .textContent || "";
             n.innerHTML =
-              `<span class="code-lang">${a}</span><button class="code-copy" data-code="${btoa(encodeURIComponent(i))}"><i class="fas fa-copy"></i> Copy</button>`,
+              `<span class="code-lang">${a}</span><button class="code-copy" data-code="${B(i)||""}"><i class="fas fa-copy"></i> Copy</button>`,
               t.insertBefore(n,
                 e);
             let s = n
@@ -460,37 +543,109 @@
             s && s.addEventListener(
               "click",
               function() {
-                let e =
-                  this.dataset
+                console
+                  .log(
+                    "[ARai] Copy button clicked"
+                  );
+                let e = this
+                  .dataset
                   .code;
-                if (!e)
-                  return;
-                let t =
-                  decodeURIComponent(
-                    atob(e));
-                navigator
+                if (!e ||
+                  "" === e
+                ) {
+                  console.error(
+                    "[ARai] No code data found"
+                  );
+                  return
+                }
+                let
+                  t = C(e);
+                if (!
+                  t) {
+                  console
+                    .error(
+                      "[ARai] Failed to decode code"
+                    );
+                  return
+                }
+                console
+                  .log(
+                    "[ARai] Attempting to copy code, length:",
+                    t.length);
+                if (
+                  navigator
                   .clipboard &&
                   navigator
                   .clipboard
-                  .writeText &&
-                  navigator
-                  .clipboard
-                  .writeText(t)
-                  .then(() => {
-                    this
-                      .innerHTML =
-                      '<i class="fas fa-check"></i> Done',
-                      setTimeout(
+                  .writeText)
+                  try {
+                    navigator
+                      .clipboard
+                      .writeText(t)
+                      .then(
                         () => {
-                          this
+                          console
+                            .log(
+                              "[ARai] Code copied successfully via Clipboard API"
+                            ),
+                            this
                             .innerHTML =
-                            '<i class="fas fa-copy"></i> Copy'
-                        },
-                        2e3)
-                  })
-                  .catch(() => {})
-              }
-            )
+                            '<i class="fas fa-check"></i> Done',
+                            setTimeout(
+                              () => {
+                                this
+                                  .innerHTML =
+                                  '<i class="fas fa-copy"></i> Copy'
+                              },
+                              2e3
+                            )
+                        })
+                      .catch(
+                        e => {
+                          console
+                            .error(
+                              "[ARai] Clipboard API failed:",
+                              e), S(
+                              t,
+                              this
+                            )
+                        }
+                      )
+                  } catch (
+                    r) {
+                    console
+                      .error(
+                        "[ARai] Clipboard API exception:",
+                        r), S(t,
+                        this)
+                  } else
+                    console.log(
+                      "[ARai] Clipboard API not available, using fallback"
+                    ), S(t,
+                      this)
+              })
+          }), o
+          .querySelectorAll("img")
+          .forEach(e => {
+            if (!e || !e
+              .src) return;
+            e.classList.add(
+              "loading");
+            let t =
+              new Image;
+            t.onload = () => {
+                e
+                  .classList.remove(
+                    "loading"), e
+                  .classList.add(
+                    "loaded")
+              }, t
+              .onerror = () => {
+                e
+                  .classList.remove(
+                    "loading")
+              }, t
+              .src = e.src
           }), a = o
           .innerHTML
       }
@@ -500,10 +655,68 @@
       ).replace(/<\/table>/g,
         "</table></div>")
     } catch (
-      n) { return e || "" }
+      n) {
+      return console.error(
+          "[ARai] Render error:", n),
+        e || ""
+    }
   }
   
-  function k(e, t, r) {
+  function S(e, t) {
+    if (!e ||
+      "string" != typeof e)
+      return void console.error(
+        "[ARai] Invalid text for fallback copy"
+      );
+    console.log(
+      "[ARai] Using fallback copy method"
+    );
+    try {
+      let r = document
+        .createElement("textarea");
+      r.value = e, r.style.position =
+        "fixed", r.style.top = "0", r
+        .style.left = "0", r.style
+        .width = "2em", r.style.height =
+        "2em", r.style.padding = "0", r
+        .style.border = "none", r.style
+        .outline = "none", r.style
+        .boxShadow = "none", r.style
+        .background = "transparent",
+        document.body.appendChild(r), r
+        .focus(), r.select();
+      try {
+        let
+          a = document.execCommand(
+            "copy");
+        console.log(a ?
+          "[ARai] Fallback copy successful" :
+          "[ARai] Fallback copy failed"
+        ), a && t && (t.innerHTML =
+          '<i class="fas fa-check"></i> Done',
+          setTimeout(() => {
+              t
+                .innerHTML =
+                '<i class="fas fa-copy"></i> Copy'
+            },
+            2e3))
+      } catch (o) {
+        console
+          .error(
+            "[ARai] execCommand failed:",
+            o)
+      }
+      document.body
+        .removeChild(r)
+    } catch (
+      n) {
+      console.error(
+        "[ARai] Fallback copy error:",
+        n)
+    }
+  }
+  
+  function M(e, t, r) {
     if (!e || !t)
       return;
     try {
@@ -523,12 +736,16 @@
         navigator.clipboard && navigator
         .clipboard.writeText ? navigator
         .clipboard.writeText(o).then(
-          () => {}).catch(() => {}) : A(
+          () => {}).catch(() => {}) : T(
           o)
-    } catch (n) {}
+    } catch (n) {
+      console.error(
+        "[ARai] Copy conversation error:",
+        n)
+    }
   }
   
-  function A(e) {
+  function T(e) {
     if (!e)
       return;
     try {
@@ -547,7 +764,7 @@
     } catch (a) {}
   }
   
-  function B(e, t) {
+  function I(e, t) {
     if (!e || !t)
       return;
     try {
@@ -591,7 +808,7 @@
     } catch (n) {}
   }
   
-  function C(e, t) {
+  function R(e, t) {
     if (!e || !t)
       return;
     try {
@@ -626,9 +843,9 @@
     } catch (
       n) {}
   }
-  let E = 0;
+  let O = 0;
   
-  function L(e, t, r, a, o = !1) {
+  function j(e, t, r, a, o = !1) {
     if (!
       e || !t && !o) return document
       .createElement("div");
@@ -639,7 +856,7 @@
       n && n.remove();
       let s = document
         .createElement("div"),
-        l = "msg_" + E++;
+        l = "msg_" + O++;
       if (s
         .className = `ai-msg ${e}-msg`,
         s.dataset.messageId = l,
@@ -649,14 +866,11 @@
           .sources = JSON.stringify(
             r || []), s.dataset
           .query = a || "", i
-          .appendChild(s), setTimeout(
-            () => i.scrollTo({
-              top: i
-                .scrollHeight,
-              behavior: "smooth"
-            }),
-            50), s;
-        let c = v(t, l);
+          .insertBefore(s, i
+            .querySelector(
+              ".scroll-anchor")), E(!
+            0), s;
+        let c = L(t, l);
         s.innerHTML = c, s.dataset
           .sources = JSON.stringify(r ||
             []), s.dataset.query = a ||
@@ -675,7 +889,7 @@
           m.onclick = e => {
             e && e
               .stopPropagation && e
-              .stopPropagation(), k(a,
+              .stopPropagation(), M(a,
                 l, r)
           };
         let g =
@@ -688,7 +902,7 @@
           g.onclick = e => {
             e && e
               .stopPropagation && e
-              .stopPropagation(), B(c,
+              .stopPropagation(), I(c,
                 g)
           };
         let h = document
@@ -700,7 +914,7 @@
           h.onclick = e => {
             e && e
               .stopPropagation && e
-              .stopPropagation(), C(h,
+              .stopPropagation(), R(h,
                 r)
           }, p.appendChild(m),
           p.appendChild(g), p
@@ -761,27 +975,25 @@
       } else
         s.textContent = t || "", h =
         t;
-      return i.appendChild(s), d
+      return i.insertBefore(s, i
+          .querySelector(
+            ".scroll-anchor")), d
         .push({
           role: "user" === e ?
             "user" : "assistant",
-          content: $(t || "", 5e3)
+          content: x(t || "", 5e3)
         }), d
         .length > 40 && (d = d.slice(-
-          40)), setTimeout(() => i
-          .scrollTo({
-            top: i
-              .scrollHeight,
-            behavior: "smooth"
-          }), 50),
-        s
-    } catch (u) {
-      return document
-        .createElement(
-          "div")
+          40)), E(!0), s
+    } catch (
+      u) {
+      return console.error(
+        "[ARai] Message creation error:",
+        u), document.createElement(
+        "div")
     }
   }
-  async function S(e,
+  async function D(e,
     t, r, a) {
     if (!e || !t)
       return;
@@ -789,7 +1001,7 @@
       let o = t.dataset
         .messageId,
         n = e || "",
-        s = v(n, o);
+        s = L(n, o);
       t.innerHTML = s, b = e;
       let l =
         document.createElement("div");
@@ -805,7 +1017,7 @@
         c.onclick = e => {
           e && e
             .stopPropagation && e
-            .stopPropagation(), k(a,
+            .stopPropagation(), M(a,
               o, r)
         };
       let p =
@@ -818,7 +1030,7 @@
         p.onclick = e => {
           e && e
             .stopPropagation && e
-            .stopPropagation(), B(s,
+            .stopPropagation(), I(s,
               p)
         };
       let m = document
@@ -830,7 +1042,7 @@
         m.onclick = e => {
           e && e
             .stopPropagation && e
-            .stopPropagation(), C(m,
+            .stopPropagation(), R(m,
               r)
         }, l.appendChild(c),
         l.appendChild(p), l
@@ -881,13 +1093,18 @@
         }),
         d.push({
           role: "assistant",
-          content: $(e || "",
+          content: x(e || "",
             5e3)
         })
-    } catch (g) {}
+    } catch (
+      g) {
+      console.error(
+        "[ARai] Finalize message error:",
+        g)
+    }
   }
   
-  function M(e, t) {
+  function N(e, t) {
     if (!e)
       return document.createElement(
         "div");
@@ -899,12 +1116,9 @@
         "thinking-indicator", r
         .innerHTML =
         `<div class="thinking-logo-wrapper"><img src="https://arlabs07.github.io/Arhub07.github.io/Images/arai2.png" alt="ARai" class="thinking-logo"><div class="thinking-glow"></div></div><div class="thinking-text"><span class="thinking-status">${e||"Processing"}</span> ${t||""}</div>`,
-        i.appendChild(r), setTimeout(
-          () => i.scrollTo({
-            top: i
-              .scrollHeight,
-            behavior: "smooth"
-          }), 50),
+        i.insertBefore(r, i
+          .querySelector(
+            ".scroll-anchor")), E(!0),
         r
     } catch (a) {
       return document
@@ -912,7 +1126,7 @@
           "div")
     }
   }
-  async function T(e,
+  async function P(e,
     t) {
     if (!e) return;
     try {
@@ -945,7 +1159,7 @@
     } catch (s) {}
   }
   
-  function I(e) {
+  function q(e) {
     if (!e || "string" !=
       typeof e) return null;
     try {
@@ -958,7 +1172,7 @@
     } catch (r) { return null }
   }
   
-  function R(e, t) {
+  function F(e, t) {
     if (!e ||
       "string" != typeof e || !t ||
       "string" != typeof t)
@@ -996,7 +1210,7 @@
           sources: []
         };
       let n = o.map(
-          e => _(e)).filter(e => e),
+          e => y(e)).filter(e => e),
         i = new Set(["the", "and",
           "for", "are", "but", "not",
           "you", "all", "can", "her",
@@ -1047,13 +1261,13 @@
           sources: []
         };
       let c = l.map(
-          e => _(e && e.toLowerCase()
+          e => y(e && e.toLowerCase()
             .replace(/[^\w\s]/g, " ")))
         .join(" ").split(/\s+/).filter(
           e => e),
-        d = f(s),
-        p = x(s),
-        m = y(c, l.map(e => _(e && e
+        d = w(s),
+        p = v(s),
+        m = k(c, l.map(e => y(e && e
           .toLowerCase().replace(
             /[^\w\s]/g, " ")))),
         g = l.map((r, a) => {
@@ -1065,7 +1279,7 @@
             };
           let o = r
             .toLowerCase(),
-            n = _(o.replace(
+            n = y(o.replace(
               /[^\w\s]/g, " ")),
             i = 0;
           s.forEach(e => {
@@ -1083,7 +1297,7 @@
                 1;
               i += r * a * 25
             }
-            u(
+            f(
               o, e.toLowerCase()
             ) && (i += 200)
           });
@@ -1093,15 +1307,15 @@
             .split(/\s+/).filter(e =>
               e);
           d.forEach(e => {
-              e && u(o,
+              e && f(o,
                 e) && (i += 80)
             }), p
             .forEach(e => {
-              e && u(o,
+              e && f(o,
                 e) && (i +=
                 120)
             });
-          let c = w(s, n
+          let c = A(s, n
             .split(/\s+/).filter(
               e => e));
           i += c * 150;
@@ -1143,51 +1357,50 @@
           sources: []
         };
       let h = "",
-        k = 0,
-        A = [],
-        B = new Set;
-      for (let C = 0; C <
-        Math.min(20, b.length); C++
+        u = 0,
+        _ = [],
+        x = new Set;
+      for (let $ = 0; $ <
+        Math.min(20, b.length); $++
       ) {
-        let E = b[C];
-        if (!E || !E
+        let B = b[$];
+        if (!B || !B
           .text) continue;
-        if (k + E
+        if (u + B
           .text.length > 3500) break;
-        h += E.text + ". ", A.push(E
+        h += B.text + ". ", _.push(B
             .text.substring(0, 150)),
-          k += E.text.length, B.add(E
+          u += B.text.length, x.add(B
             .index)
       }
       if (!h || h
         .length < 100) {
-        let L = l
+        let C = l
           .slice(0, Math.min(10, l
             .length)).join(". ") + " ";
-        A = l.slice(0, Math.min(10, l
+        _ = l.slice(0, Math.min(10, l
           .length)).map(e => (e || "")
           .substring(0, 150)).filter(
-          e => e), h = L.substring(0,
+          e => e), h = C.substring(0,
           3500)
       }
-      return console.log(
-        `[ARai] Extracted ${A.length} sources`
-      ), {
-        context: h || "",
-        sources: A || []
+      return {
+        context: h ||
+          "",
+        sources: _ || []
       }
-    } catch (
-      S) {
-      return console.error(
-        "[ARai] Source extraction error"
-      ), {
-        context: "",
-        sources: []
-      }
+    } catch (E) {
+      return console
+        .error(
+          "[ARai] Source extraction error:",
+          E), {
+          context: "",
+          sources: []
+        }
     }
   }
   
-  function O(e, t, r) {
+  function H(e, t, r) {
     if (!e ||
       "string" != typeof e || !t || !
       Array.isArray(t))
@@ -1219,7 +1432,7 @@
       i) { return e }
   }
   
-  function j() {
+  function U() {
     c = !c, n.classList
       .toggle("show", c), c ?
       setTimeout(() => {
@@ -1233,7 +1446,7 @@
         .blur()
       )
   }
-  async function D() {
+  async function W() {
     let e = s
       .value.trim();
     if (!e || p)
@@ -1276,11 +1489,15 @@
     }(e);
     if (
       t) {
-      if ("export" === t.type) {
-        !
-        function e() {
+      if ("export" === t
+        .type) {
+        console.log(
+          "[ARai] Command: Export chat"
+        );
+        ! function e() {
           try {
-            let t =
+            let
+              t =
               "# ARai Conversation Export\n\n";
             t +=
               `Date: ${new Date().toLocaleString()}\n\n`,
@@ -1366,8 +1583,8 @@
           } catch (l) {
             console
               .error(
-                "[ARai] Export error"
-              )
+                "[ARai] Export error:",
+                l)
           }
         }(), s.value =
           "";
@@ -1375,49 +1592,82 @@
       }
       if ("clear" === t
         .type) {
-        i.innerHTML =
-          '<div class="initial-screen"><div class="initial-screen-title">Ask ARai anything</div><div class="initial-screen-subtitle">Get contextual help about this page or ask general questions.</div></div>',
+        console.log(
+            "[ARai] Command: Clear chat"
+          ), i.innerHTML =
+          '<div class="initial-screen"><div class="initial-screen-title">Ask ARai anything</div><div class="initial-screen-subtitle">Get contextual help about this page or ask general questions.</div></div><div class="scroll-anchor"></div>',
           d = [], g.clear(), b = null,
-          h = null, s.value =
-          "";
+          h = null, s.value = "",
+          function() {
+            try {
+              let e = i
+                .querySelector(
+                  ".scroll-anchor"
+                );
+              if (!e || !(
+                  "IntersectionObserver" in
+                  window)) return;
+              u && u.disconnect(), u =
+                new IntersectionObserver(
+                  e => {
+                    _ = e[0]
+                      .isIntersecting
+                  }, {
+                    root: i,
+                    threshold: 0
+                  }), u
+                .observe(e)
+            } catch (
+              z) {}
+          }();
         return
       }
       if (
         "regenerate" === t.type &&
         h && b) {
-        s.value = h,
-          D();
+        console.log(
+            "[ARai] Command: Regenerate"
+          ), s.value = h,
+          W();
         return
       }
-      if ("simplify" ===
-        t.type && b) {
-        s.value =
+      if ("simplify" === t
+        .type && b) {
+        console.log(
+            "[ARai] Command: Simplify"
+          ), s.value =
           "Explain this in simpler terms: " +
-          b, D();
+          b, W();
         return
       }
       if (
-        "shorter" === t.type && b) {
-        s
-          .value =
+        "shorter" === t.type && b
+      ) {
+        console.log(
+            "[ARai] Command: Shorter"
+          ), s.value =
           "Make this shorter and more concise: " +
-          b, D();
+          b, W();
         return
       }
       if (
-        "longer" === t.type && b) {
-        s
-          .value =
+        "longer" === t.type && b
+      ) {
+        console.log(
+            "[ARai] Command: Longer"),
+          s.value =
           "Expand on this with more details: " +
-          b, D();
+          b, W();
         return
       }
       if (
         "continue" === t.type && b
       ) {
-        s.value =
+        console.log(
+            "[ARai] Command: Continue"
+          ), s.value =
           "Continue from: " + b.slice(
-            -200), D();
+            -200), W();
         return
       }
     }
@@ -1452,19 +1702,19 @@
         } catch (
           a) { return "search" }
       }(e);
-    L("user", e, [], "", !1), s
+    j("user", e, [], "", !1), s
       .value = "";
-    let o = M(
+    let o = N(
         "Initializing", ""),
       n = !1,
       m = null,
       u = null;
     try {
-      let _ = R(e, a),
-        f = _.context || "",
-        x = _.sources || [];
-      T(o, x.length);
-      let y =
+      let y = F(e, a),
+        w = y.context || "",
+        v = y.sources || [];
+      P(o, v.length);
+      let k =
         function e() {
           try {
             let t =
@@ -1481,34 +1731,34 @@
               let o =
                 "user" === a.role ?
                 "User" : "Assistant",
-                n = $(a.content, 200);
+                n = x(a.content, 200);
               t +=
                 `${o}: ${n}\n\n`
             }
-            return $(
+            return x(
               t, 4e3)
           } catch (
             i) { return "" }
         }(),
-        w =
+        A =
         `You are ARai by arlabs07. Follow ALL instructions EXACTLY.\n\nRULES:\n1. Code: Output ACTUAL CODE in code blocks, NOT explanations\n2. Math: Use LaTeX with $ or $$ delimiters. Example: $$\\pi = 3.14159265358979323846$$\n3. Tables: Use markdown table format with | separators\n4. Images: Use ![desc](https://image.pollinations.ai/prompt/desc)\n5. NEVER add citation numbers in responses\n6. Summarize: Comprehensive overview with key points\n7. Be PRECISE and DIRECT`,
-        k = "";
-      x && x.length > 0 ? k :
-        "\n\nContext:\n", x.forEach((
+        B = "";
+      v && v.length > 0 ? B =
+        "\n\nContext:\n": v.forEach((
           e, t) => {
-          e && (k +=
+          e && (B +=
             `${t+1}. ${e.substring(0,200)}\n`
           )
-        }); k=
-      "\n\n(General knowledge mode - no specific page context available)";
+        }) ; B =
+        "\n\n(General knowledge mode - no specific page context available)";
       let
-        A = {
+        C = {
           model: "openai",
           messages: [{
               role: "system",
-              content: w
-            }, y &&
-            "" !== y.trim() ?
+              content: A
+            }, k &&
+            "" !== k.trim() ?
             {
               role: "assistant",
               content: "Context understood."
@@ -1522,99 +1772,91 @@
             })),
             {
               role: "user",
-              content: f && f
+              content: w && w
                 .length > 50 ?
-                `${e}${k}\n\nPage: ${f}` :
-                `${e}${k}`
+                `${e}${B}\n\nPage: ${w}` :
+                `${e}${B}`
             }
           ].filter(e => null !== e),
-          temperature: 1,
+          temperature: 1, 
           stream: !0
-        };
-      console.log(
-        "[ARai] Starting AI request with 30s timeout"
-      );
-      let B =
-        new AbortController,
-        C = B.signal,
-        E = null;
+        },
+        E = new AbortController,
+        L = E.signal,
+        S = null;
       try {
-        let N =
+        let M =
           new Promise(async (t,
-            a) => {
+            r) => {
             try {
-              let o =
+              let a =
                 await fetch(
                   "https://text.pollinations.ai/openai", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON
                       .stringify(
-                        A),
-                    signal: C
+                        C),
+                    signal: L
                   }
                 );
-              if (!o || !o
+              if (!a || !a
                 .ok) {
                 n = !0, m =
-                  x, u = f, a(
+                  v, u = w, r(
                     Error(
-                      `API Error: ${o?o.status:"Network error"}`
+                      `API Error: ${a?a.status:"Network error"}`
                     )
                   );
                 return
               }
               t(
-                o)
-            } catch (i) {
+                a)
+            } catch (o) {
               n
-                = !0, m = x, u =
-                f, a(i)
+                = !0, m = v, u =
+                w, r(o)
             }
           }),
-          P = new Promise((e,
+          T = new Promise((e,
             t) => {
-            E = setTimeout(
+            S = setTimeout(
               () => {
-                console.log(
-                    "[ARai] 30s timeout reached, activating NPU"
-                  ), n = !0, m =
-                  x, u = f, B
+                n = !0, m = v,
+                  u = w, E
                   .abort(), t(
                     Error(
                       "Request timeout - switching to NPU"
                     ))
-              }, 3e4
-            )
+              }, 3e4)
           });
-        let q = await Promise
-          .race([N, P]);
-        if (E &&
-          clearTimeout(E), n
+        let
+          I = await Promise.race([M,
+            T
+          ]);
+        if (S &&
+          clearTimeout(S), n
         ) {
           console.log(
-            "[ARai] Timeout triggered, using NPU fallback"
+            "[ARai] NPU Fallback: 30s timeout reached"
           );
           throw Error(
             "Timeout")
         }
         o.remove();
         let
-          F = L("bot", "", x, r, !
+          R = j("bot", "", v, r, !
             0);
-        if (!F) {
-          n = !0, m = x,
-            u = f;
+        if (!R) {
+          n = !0, m = v,
+            u = w;
           throw Error(
             "Failed to create message element"
           )
         }
-        console.log(
-          "[ARai] AI responding successfully"
-        );
-        let H = q.body
+        let O = I.body
           .getReader(),
-          U = new TextDecoder,
+          N = new TextDecoder,
           W = "",
           z = !
           1;
@@ -1622,13 +1864,13 @@
           let {
             done: G,
             value: V
-          } = await H
+          } = await O
             .read();
           if (G) break;
           if (!
             V) continue;
           z = !0;
-          let X = U.decode(
+          let X = N.decode(
             V, { stream: !0 });
           if (!X)
             continue;
@@ -1645,21 +1887,16 @@
                 continue;
               try {
                 let
-                  Q = I(K) || JSON
+                  Q = q(K) || JSON
                   .parse(K),
                   Z = Q?.choices?.[0]
                   ?.delta?.content ||
                   "";
-                Z && (W += Z, F
-                  .innerHTML = v(W,
-                    F.dataset
-                    .messageId), i
-                  .scrollTo({
-                    top: i
-                      .scrollHeight,
-                    behavior: "smooth"
-                  })
-                )
+                Z && (W += Z, R
+                  .innerHTML = L(W,
+                    R.dataset
+                    .messageId), E(!
+                    1))
               } catch (
                 ee) {}
             }
@@ -1667,15 +1904,15 @@
         if (!z || !
           W || W.length < 10) {
           n = !
-            0, m = x, u =
-            f;
+            0, m = v, u =
+            w;
           throw Error(
             "No valid response received"
           )
         }
         "undefined" !=
-        typeof hljs && F && F
-          .querySelectorAll && F
+        typeof hljs && R && R
+          .querySelectorAll && R
           .querySelectorAll(
             "pre code").forEach(
             e => {
@@ -1689,44 +1926,40 @@
                     e)
               } catch (t) {}
             }),
-          await S(W, F, x, r), console
-          .log(
-            "[ARai] AI response completed successfully"
-          )
+          await D(W, R, v,
+            r)
       } catch (
         te) {
-        throw n = !0, m = x, u =
-          f, E && clearTimeout(E),
+        throw n = !0, m = v, u =
+          w, S && clearTimeout(S),
           te
       }
     } catch (re) {
       if (o &&
-        o.remove && o.remove(),
-        console.log(
-          "[ARai] Error occurred:", re
-          .message), n && m && m
-        .length > 0) {
-        console.log(
-          "[ARai] Activating NPU fallback with sources"
-        );
+        o.remove && o.remove(), n &&
+        m && m.length > 0) {
+        console
+          .log(
+            "[ARai] NPU Fallback: Activated with sources"
+          );
         let ae =
           `Based on the content I found on this page, here's what I can tell you:\n\n`,
-          oe = O(ae, m, m);
-        L("bot", oe, m, "", !
+          oe = H(ae, m, m);
+        j("bot", oe, m, "", !
           1)
       } else if (n && (!m ||
           0 === m.length)) {
         console
           .log(
-            "[ARai] No sources available, providing general answer"
+            "[ARai] NPU Fallback: No sources, general answer"
           );
         let ne =
           `I'll answer your question based on general knowledge:\n\n${e}\n\n*Note: I couldn't extract specific information from the current page, so this is a general response. For page-specific answers, please ensure you're on a content-rich page.*`;
-        L("bot", ne, [], "", !
+        j("bot", ne, [], "", !
           1)
       } else console.error(
         "[ARai] Critical error:", re
-      ), L("bot",
+      ), j("bot",
         "I apologize, but I encountered an error processing your request. Please try again.",
         [], "", !1)
     } finally {
@@ -1737,7 +1970,7 @@
     }
   }
   t
-    .addEventListener("click", j), s
+    .addEventListener("click", U), s
     .addEventListener("input",
       () => {
         let e = s.value.trim()
@@ -1748,22 +1981,24 @@
       }), l.addEventListener(
       "click", () => {
         l.disabled ||
-          p || D()
+          p || W()
       }), s
-    .addEventListener("keypress",
+    .addEventListener("keydown",
       e => {
-        "Enter" === (e && e.key) ||
-        l.disabled || p || D()
+        "Enter" === e.key && !e
+          .shiftKey && (e
+            .preventDefault(), l
+            .disabled || p || W())
       }), n
     .addEventListener("click", e => {
       e
         &&
-        e.target === n && j()
+        e.target === n && U()
     }),
     document.addEventListener("keydown",
       e => {
-        "Escape" === (e && e
-          .key) && c && j()
+        "Escape" === e.key && c &&
+          U()
       }), document
     .addEventListener("click",
       e => {
