@@ -34,8 +34,8 @@ let relatedSites = [
 ];
 
 let adsConfig = {
-  enabled: true,
-  density: 3,
+  enabled: false,
+  density: 0,
   randomize: true,
   ads: [
     {
